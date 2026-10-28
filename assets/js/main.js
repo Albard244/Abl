@@ -88,9 +88,9 @@ const translations = {
     nav_contact: "Kontak",
     nav_chat_wa: "Chat WhatsApp",
 
-    hero_badge: "Full-Stack Engineer & System Architect",
+    hero_badge: "Vibe Coder & AI-Assisted Builder",
     hero_specializing: "Spesialisasi:",
-    hero_bio: "IT Specialist & System Architect bergelar Sarjana Komputer. Berpengalaman dalam investigasi dan penanganan bugs kritis pada SIMRS, pengembangan web modern dengan React, arsitektur backend berkecepatan tinggi dengan Laravel & PHP Native, aplikasi mobile cross-platform dengan Flutter, serta perancangan API & WebServices enterprise.",
+    hero_bio: "Vibe Coder bergelar Sarjana Komputer (S.Kom) dengan latar belakang kuat di bidang Healthcare Information Systems. Memanfaatkan alur kerja AI modern (vibe coding) untuk merancang, menyelesaikan bugs (SIMRS bug hunting), serta membangun aplikasi Web (React), Mobile (Flutter), dan integrasi API (Laravel & PHP) dengan eksekusi cepat, bersih, dan fungsional.",
     hero_quote: "“Eccedentesiast • Fortis Solus Stabit”",
     hero_btn_projects: "Lihat Proyek & Solusi",
     hero_btn_cv: "Buka CV Digital",
@@ -101,12 +101,12 @@ const translations = {
     chip_diagnostics: "System Diagnostics",
     chip_backend: "Backend Power",
 
-    hero_console_role: "Senior Systems Engineer • Vibe Coding Architect",
+    hero_console_role: "Vibe Coder • Modern AI-Driven Engineering",
     hero_console_status: "SYSTEM OPTIMAL",
 
-    console_badge: "Live Code Inspector & Architecture",
-    console_heading: "Arsitektur Sistem & Forensik Kode Riil",
-    console_subheading: "Inspeksi langsung cuplikan arsitektur sistem: forensik SIMRS, frontend React modern, gateway WebService Laravel, hingga antrean mobile Flutter.",
+    console_badge: "Vibe Coding Console & Code Inspector",
+    console_heading: "Alur Vibe Coding & Forensik Kode Riil",
+    console_subheading: "Eksplorasi bagaimana ide dan arsitektur dieksekusi secara nyata: dari forensik SIMRS, komponen React modern, gateway Laravel WebServices, hingga antrean mobile Flutter.",
 
     metric_bugs_label: "Bugs Sistem Dituntaskan",
     metric_bugs_sub: "Forensik troubleshooting & stabilisasi transaksi",
@@ -118,12 +118,12 @@ const translations = {
     metric_uptime_sub: "Ketersediaan layanan & integritas data",
 
     about_tag: "Tentang Saya",
-    about_title: "Rekayasa Perangkat Lunak & Arsitektur Sistem",
-    about_desc: "Mengkombinasikan keahlian full-stack modern, pemecahan masalah kritis, dan arsitektur sistem andal.",
-    about_story_title: "Dedikasi & Rekayasa Perangkat Lunak",
-    about_story_p1: "Saya adalah seorang profesional IT bergelar Sarjana Komputer (S.Kom) dengan fokus mendalam pada rekayasa perangkat lunak, investigasi sistem, dan arsitektur data.",
-    about_story_p2: "Keahlian utama saya mencakup pencarian dan perbaikan bugs (Bug Hunting) pada SIMRS (Sistem Informasi Manajemen Rumah Sakit) untuk menjamin keandalan data medis, konsistensi transaksi database, dan pencegahan bottleneck antrean.",
-    about_story_p3: "Di ranah modern development, saya aktif mengembangkan aplikasi web interaktif dengan React, backend tangguh dengan Laravel & PHP Native, aplikasi mobile cross-platform dengan Flutter, serta perancangan API dan WebServices terenkripsi.",
+    about_title: "Filosofi Vibe Coding & Solusi Software",
+    about_desc: "Mewujudkan ide menjadi aplikasi nyata secara cepat melalui kolaborasi intuisi manusia dan akselerasi AI modern.",
+    about_story_title: "Kenapa Memilih Pendekatan Vibe Coding?",
+    about_story_p1: "Sebagai Sarjana Komputer (S.Kom), saya melihat bahwa cara membangun perangkat lunak telah bertransformasi. Vibe Coding adalah metode modern di mana saya memegang kendali penuh atas visi, logika sistem, dan arsitektur solusi, sementara AI menjadi akselerator penulisan kode yang sangat cepat.",
+    about_story_p2: "Didukung latar belakang di bidang Sistem Informasi Rumah Sakit (SIMRS) dan investigasi bugs kritis, saya memadukan intuisi teknis di lapangan dengan kecerdasan AI untuk menghasilkan sistem yang tidak hanya cepat dibuat, tapi juga stabil, aman, dan mudah dirawat.",
+    about_story_p3: "Dari antarmuka web interaktif (React), aplikasi mobile praktis (Flutter), hingga backend andal (Laravel & PHP Native), vibe coding memungkinkan saya menghadirkan solusi fungsional 10x lebih efisien.",
     about_bio_title: "Biodata Singkat",
     about_bio_desc: "Informasi data diri dan kualifikasi akademik:",
     meta_name: "Nama Lengkap",
@@ -137,8 +137,8 @@ const translations = {
     meta_dob_val: "04 Oktober (28 Tahun)",
     meta_job_status: "Status Profesional",
     meta_job_val: "Terbuka untuk Kolaborasi",
-    about_spec_title: "Fokus & Bidang Keahlian Utama",
-    about_spec_desc: "Mengombinasikan pemecahan bugs tingkat lanjut, rekayasa full-stack web, aplikasi mobile, dan perancangan WebServices:",
+    about_spec_title: "Fokus & Keahlian Vibe Coding",
+    about_spec_desc: "Mengombinasikan pemecahan bugs, pembuatan aplikasi web modern, mobile computing, dan integrasi API:",
     spec_1: "SIMRS Bug Hunting & System Troubleshooting",
     spec_2: "Frontend Modern dengan React.js & Tailwind",
     spec_3: "Backend Laravel & Script PHP Native",
@@ -223,7 +223,7 @@ const translations = {
     form_submit: "Kirim Pesan via WhatsApp",
 
     cv_summary_title: "Ringkasan Profesional",
-    cv_summary_text: "Innovative and deadline-driven IT Specialist & System Architect dengan keahlian mendalam dalam SIMRS Bug Hunting & optimasi basis data, pengembangan antarmuka web modern dengan React & Tailwind CSS, rekayasa backend berkecepatan tinggi dengan Laravel & PHP Native, aplikasi mobile cross-platform Flutter & Dart, serta integrasi Enterprise WebServices & RESTful APIs.",
+    cv_summary_text: "Sarjana Komputer (S.Kom) dan Vibe Coder yang adaptif, mengombinasikan logika komputasi, investigasi SIMRS bugs, dan akselerasi workflow AI modern untuk mengembangkan solusi Web modern (React), Mobile cross-platform (Flutter), serta integrasi API & WebServices (Laravel & PHP) secara cepat, efisien, dan tepat sasaran.",
     cv_exp_title: "Pengalaman Kerja",
     cv_edu_title: "Pendidikan",
     cv_print_btn: "Cetak / Simpan PDF",
@@ -240,9 +240,9 @@ const translations = {
     nav_contact: "Contact",
     nav_chat_wa: "Chat WhatsApp",
 
-    hero_badge: "Full-Stack Engineer & System Architect",
+    hero_badge: "Vibe Coder & AI-Assisted Builder",
     hero_specializing: "Specializing in:",
-    hero_bio: "IT Specialist & System Architect holding a Bachelor's degree in Computer Science. Experienced in deep forensic bug hunting and performance optimization in Hospital Information Systems (HIS/SIMRS), modern web engineering with React, high-throughput backend development with Laravel & PHP Native, cross-platform mobile apps with Flutter, and enterprise API & WebServices architecture.",
+    hero_bio: "Vibe Coder holding a Bachelor's degree in Computer Science (S.Kom) with deep experience in Healthcare Information Systems. Leveraging modern AI-assisted workflows (vibe coding) to troubleshoot SIMRS bugs, conceptualize solutions, and rapidly build clean, functional Web (React), Mobile (Flutter), and API (Laravel & PHP) applications.",
     hero_quote: "“Eccedentesiast • Fortis Solus Stabit”",
     hero_btn_projects: "Explore Projects & Solutions",
     hero_btn_cv: "Open Digital CV",
@@ -253,12 +253,12 @@ const translations = {
     chip_diagnostics: "System Diagnostics",
     chip_backend: "Backend Power",
 
-    hero_console_role: "Senior Systems Engineer • Vibe Coding Architect",
+    hero_console_role: "Vibe Coder • Modern AI-Driven Engineering",
     hero_console_status: "SYSTEM OPTIMAL",
 
-    console_badge: "Live Code Inspector & Architecture",
-    console_heading: "Production Code Architecture & Diagnostics",
-    console_subheading: "Inspect live technical architecture implementations: SIMRS deadlock forensics, React telemetry dashboard, Laravel WebService gateway, and Flutter queue engine.",
+    console_badge: "Vibe Coding Console & Code Inspector",
+    console_heading: "Vibe Coding Workflow & Production Code",
+    console_subheading: "Explore how ideas and architecture are brought to life: from SIMRS deadlock forensics, reactive React components, Laravel WebServices gateway, to Flutter queue engines.",
 
     metric_bugs_label: "System Bugs Resolved",
     metric_bugs_sub: "Forensic troubleshooting & transaction stabilization",
@@ -270,12 +270,12 @@ const translations = {
     metric_uptime_sub: "Service uptime & clinical data integrity",
 
     about_tag: "About Me",
-    about_title: "Software Engineering & System Architecture",
-    about_desc: "Blending modern full-stack engineering, critical troubleshooting, and resilient system architecture.",
-    about_story_title: "Dedication & Software Engineering",
-    about_story_p1: "I am an IT professional holding a Bachelor’s degree in Computer Science (S.Kom) with a strong focus on software engineering, system diagnostics, and data architecture.",
-    about_story_p2: "My core expertise includes investigating and eliminating critical bugs (Bug Hunting) in Hospital Information Systems (HIS/SIMRS) to ensure clinical data integrity, database transaction consistency, and queue bottleneck elimination.",
-    about_story_p3: "In modern software development, I actively engineer reactive web interfaces with React, high-performance backends with Laravel & PHP Native, cross-platform mobile applications with Flutter, and encrypted APIs and WebServices for seamless system integrations.",
+    about_title: "Vibe Coding Philosophy & Software Solutions",
+    about_desc: "Turning ideas into working software at high speed through human intuition and modern AI acceleration.",
+    about_story_title: "Why the Vibe Coding Approach?",
+    about_story_p1: "As a Computer Science graduate (S.Kom), I believe software development has fundamentally evolved. Vibe Coding is a modern methodology where I steer the vision, business logic, and solution architecture, while AI acts as a high-speed execution engine.",
+    about_story_p2: "Backed by experience in Hospital Information Systems (HIS/SIMRS) and critical bug hunting, I combine practical domain intuition with AI acceleration to build systems that are not only delivered fast, but also stable, secure, and maintainable.",
+    about_story_p3: "From interactive web interfaces (React), responsive mobile apps (Flutter), to robust backends (Laravel & PHP Native), vibe coding empowers me to ship functional solutions 10x more efficiently.",
     about_bio_title: "Brief Profile",
     about_bio_desc: "Personal information and academic qualifications:",
     meta_name: "Full Name",
@@ -289,8 +289,8 @@ const translations = {
     meta_dob_val: "04 October (28 Years)",
     meta_job_status: "Professional Status",
     meta_job_val: "Open for Opportunities",
-    about_spec_title: "Core Areas of Expertise",
-    about_spec_desc: "Combining advanced bug hunting, full-stack web engineering, cross-platform mobile, and WebServices architecture:",
+    about_spec_title: "Core Vibe Coding Pillars",
+    about_spec_desc: "Combining critical bug hunting, modern web development, mobile computing, and API integration:",
     spec_1: "SIMRS Bug Hunting & System Troubleshooting",
     spec_2: "Modern Frontend with React.js & Tailwind",
     spec_3: "Backend Laravel & PHP Native Scripting",
@@ -375,7 +375,7 @@ const translations = {
     form_submit: "Send Message via WhatsApp",
 
     cv_summary_title: "Professional Summary",
-    cv_summary_text: "Innovative and deadline-driven IT Specialist & System Architect with deep expertise in SIMRS Bug Hunting & database optimization, modern web development with React & Tailwind CSS, high-throughput backend engineering with Laravel & PHP Native, cross-platform mobile apps with Flutter & Dart, and enterprise WebServices & RESTful APIs.",
+    cv_summary_text: "Computer Science graduate (S.Kom) and agile Vibe Coder, merging computational logic, SIMRS bug hunting, and modern AI acceleration workflows to rapidly build modern Web (React), cross-platform Mobile (Flutter), and API/WebServices (Laravel & PHP) solutions with efficiency and precision.",
     cv_exp_title: "Work Experience",
     cv_edu_title: "Education",
     cv_print_btn: "Print / Save PDF",
@@ -387,20 +387,20 @@ const translations = {
 
 const typedRoles = {
   id: [
-    'Full-Stack Engineer & Architect',
-    'SIMRS Bug Hunter & System Optimizer',
-    'React Frontend & Tailwind Specialist',
-    'Laravel & PHP Native Backend Engineer',
+    'Vibe Coder & AI Software Builder',
+    'SIMRS Bug Hunter & Problem Solver',
+    'React Frontend & Tailwind Creator',
+    'Laravel & PHP Backend Builder',
     'Flutter Cross-Platform Mobile Engineer',
-    'API & Enterprise WebServices Architect'
+    'API & WebServices Integrator'
   ],
   en: [
-    'Full-Stack Engineer & System Architect',
-    'SIMRS Bug Hunter & Diagnostics Pro',
-    'React Frontend & Tailwind Specialist',
-    'Laravel & PHP Native Backend Engineer',
+    'Vibe Coder & AI Software Builder',
+    'SIMRS Bug Hunter & Problem Solver',
+    'React Frontend & Tailwind Creator',
+    'Laravel & PHP Backend Builder',
     'Flutter Cross-Platform Mobile Engineer',
-    'API & Enterprise WebServices Architect'
+    'API & WebServices Integrator'
   ]
 };
 
