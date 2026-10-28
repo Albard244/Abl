@@ -1,125 +1,1391 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Index - Personal Bootstrap Template</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel Bard Laklo, S.Kom | Full-Stack Engineer & System Architect</title>
+  
+  <!-- Meta Information & SEO -->
+  <meta name="description" content="Portfolio profesional Angel Bard Laklo, S.Kom - Full-Stack Engineer, System Architect, dan Specialist SIMRS Bug Hunting. Ahli dalam React, Laravel, PHP Native, Flutter, REST API, dan WebServices." />
+  <meta name="keywords" content="Angel Bard Laklo, Full-Stack Developer, SIMRS Bug Hunter, React, Laravel, PHP Native, Flutter, WebServices, API Integrations, Software Architect" />
+  <meta name="author" content="Angel Bard Laklo, S.Kom" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Angel Bard Laklo, S.Kom - Full-Stack Engineer & System Architect" />
+  <meta property="og:description" content="Portfolio modern & profesional Angel Bard Laklo, S.Kom. Full-Stack Engineer, SIMRS Bug Hunter, React & Flutter Developer." />
+  <meta property="og:image" content="assets/img/profile-img.jpg" />
+  <meta property="og:type" content="website" />
+  
+  <link rel="icon" type="image/jpeg" href="assets/img/profile-img.jpg" />
+  
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <!-- Ambient Light Orbs Background -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+  <!-- =================================================================
+       HEADER / NAVBAR
+       ================================================================= -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#hero" class="brand-logo" aria-label="Angel Bard Laklo Home">
+        <span class="dot"></span>
+        <span>Abl<span class="gradient-text">.</span></span>
+      </a>
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active" data-i18n="nav_home">Beranda</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="nav_about">Tentang</a></li>
+          <li><a href="#experience" class="nav-link" data-i18n="nav_experience">Pengalaman</a></li>
+          <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Proyek</a></li>
+          <li><a href="#skills" class="nav-link" data-i18n="nav_skills">Keahlian</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Kontak</a></li>
+        </ul>
+      </nav>
 
-    <!-- Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet" />
+      <div class="nav-actions">
+        <!-- Language Switcher Toggle (ID / EN) -->
+        <button id="lang-toggle" class="lang-btn" aria-label="Ganti Bahasa / Switch Language" title="Ganti Bahasa (ID / EN)">
+          <span id="lang-id" class="lang-active">ID</span>
+          <span class="lang-divider">/</span>
+          <span id="lang-en" class="lang-inactive">EN</span>
+        </button>
 
-    <!-- =======================================================
-  * Template Name: Personal
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Updated: Mar 05 2025 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-  </head>
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none">
+            <!-- Icon injected by JS -->
+          </svg>
+        </button>
 
-  <body class="index-page">
-    <header id="header" class="header d-flex align-items-center fixed-top">
-      <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.webp" alt=""> -->
-          <h1 class="sitename">Abl.</h1>
+        <!-- WhatsApp Quick Chat CTA -->
+        <a href="https://wa.me/6285333921117?text=Halo%20Angel%20Bard%20Laklo,%20saya%20melihat%20portfolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi." target="_blank" rel="noopener noreferrer" class="btn-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          <span data-i18n="nav_chat_wa">Chat WhatsApp</span>
         </a>
 
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="resume.html">Resume</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="main">
-      <!-- Hero Section -->
-      <section id="hero" class="hero section dark-background">
-        <img src="assets/img/hero.png" alt="" data-aos="fade-in" />
+  <main>
+    <!-- =================================================================
+         HERO SECTION
+         ================================================================= -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <!-- Active Status Pill -->
+          <div class="badge-status">
+            <span class="badge-pulse"></span>
+            <span data-i18n="hero_badge">Full-Stack Engineer & System Architect</span>
+          </div>
 
-        <div class="container" data-aos="zoom-out" data-aos-delay="100">
-          <h2>Angel Bard Laklo, S.Kom</h2>
-          <p>I'm <span class="typed" data-typed-items="Design Developer, Front-end Developer "></span><span class="typed-cursor typed-cursor--blink"></span></p>
-          <div class="social-links">
-            <!-- <a href="#"><i class="bi bi-twitter-x"></i></a> -->
-            <a href="https://www.facebook.com/BardAngGelLaklo.sfk"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/engellaklo/"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/angel-bard-laklo"><i class="bi bi-linkedin"></i></a>
+          <h1 class="hero-name">
+            Angel Bard Laklo, <span class="gradient-text">S.Kom</span>
+          </h1>
+
+          <div class="hero-typed-wrap">
+            <span data-i18n="hero_specializing">Spesialisasi:</span>
+            <span id="typed-text" class="hero-typed-text"></span>
+            <span class="typed-cursor">|</span>
+          </div>
+
+          <p class="hero-bio" data-i18n="hero_bio">
+            IT Specialist & System Architect bergelar Sarjana Komputer. Berpengalaman dalam investigasi dan penanganan bugs kritis pada SIMRS, pengembangan web modern dengan React, arsitektur backend berkecepatan tinggi dengan Laravel & PHP Native, aplikasi mobile cross-platform dengan Flutter, serta perancangan API & WebServices enterprise.
+          </p>
+
+          <div class="hero-quote" data-i18n="hero_quote">
+            “Eccedentesiast • Fortis Solus Stabit”
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn-cta">
+              <span data-i18n="hero_btn_projects">Lihat Proyek & Solusi</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
+            <button id="open-cv-btn" class="btn-secondary" aria-label="Buka Curriculum Vitae">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span data-i18n="hero_btn_cv">Buka CV Digital</span>
+            </button>
+
+            <a href="#contact" class="btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span data-i18n="hero_btn_contact">Hubungi Saya</span>
+            </a>
+          </div>
+
+          <!-- Social Links -->
+          <div class="hero-socials">
+            <span class="hero-social-label" data-i18n="hero_connect">Terhubung:</span>
+            
+            <a href="https://www.linkedin.com/in/angel-bard-laklo" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn Profile" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+
+            <a href="https://www.instagram.com/engellaklo/" target="_blank" rel="noopener noreferrer" class="social-pill" title="Instagram Profile" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+
+            <a href="https://www.facebook.com/BardAngGelLaklo.sfk" target="_blank" rel="noopener noreferrer" class="social-pill" title="Facebook Profile" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+              </svg>
+            </a>
+
+            <a href="mailto:bardlaklo04@gmail.com" class="social-pill" title="Kirim Email" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
           </div>
         </div>
-      </section>
-      <!-- /Hero Section -->
-    </main>
 
-    <footer id="footer" class="footer dark-background">
+        <!-- Hero Visual Presentation: Prominent Executive Photo Card -->
+        <div class="hero-visual">
+          <div class="visual-card">
+            <div class="visual-img-wrap">
+              <img src="assets/img/profile-img.jpg" alt="Angel Bard Laklo, S.Kom" class="visual-img" />
+              <div class="visual-overlay"></div>
+            </div>
+
+            <!-- Floating Tech Chips -->
+            <div class="floating-chip chip-hospital">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <div>
+                <span class="chip-label" data-i18n="chip_tech">Modern Tech Stack</span>
+                <span class="chip-val">React • Flutter</span>
+              </div>
+            </div>
+
+            <div class="floating-chip chip-speed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div>
+                <span class="chip-label" data-i18n="chip_diagnostics">System Diagnostics</span>
+                <span class="chip-val" style="color: #10b981;">SIMRS Bug Hunter</span>
+              </div>
+            </div>
+
+            <div class="floating-chip chip-stack">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <div>
+                <span class="chip-label" data-i18n="chip_backend">Backend Power</span>
+                <span class="chip-val">Laravel • PHP Native</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         ARCHITECTURE SECTION / CODE INSPECTOR (DI BAWAH HERO)
+         ================================================================= -->
+    <section id="architecture" class="architecture-section">
       <div class="container">
-        <h3 class="sitename">Abl.</h3>
-        <p>Eccedentesiast | Fortis Solus Stabit</p>
-        <div class="social-links d-flex justify-content-center">
-          <!-- <a href=""><i class="bi bi-twitter-x"></i></a> -->
-          <a href="https://www.facebook.com/BardAngGelLaklo.sfk"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/engellaklo/"><i class="bi bi-instagram"></i></a>
-          <!-- <a href=""><i class="bi bi-skype"></i></a> -->
-          <a href="https://www.linkedin.com/in/angel-bard-laklo"><i class="bi bi-linkedin"></i></a>
+        <div class="section-header" style="text-align: center; max-width: 780px; margin: 0 auto 2.5rem auto;">
+          <span class="section-tag" data-i18n="console_badge">Live Code Inspector & Architecture</span>
+          <h2 class="section-title" data-i18n="console_heading">
+            Arsitektur Sistem & Forensik Kode Riil
+          </h2>
+          <p class="section-desc" data-i18n="console_subheading">
+            Inspeksi langsung cuplikan arsitektur sistem: forensik SIMRS, frontend React modern, gateway WebService Laravel, hingga antrean mobile Flutter.
+          </p>
         </div>
-        <div class="container">
-          <div class="copyright"><span>Copyright</span> <strong class="px-1 sitename">Abl.</strong> <span>All Rights Reserved</span></div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you've purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+
+        <div class="console-card">
+          <div class="console-header">
+            <div class="console-dots">
+              <span class="dot-red" title="Close"></span>
+              <span class="dot-yellow" title="Minimize"></span>
+              <span class="dot-green" title="Expand"></span>
+            </div>
+            <div class="console-tabs" role="tablist" aria-label="Architecture Code Inspector">
+              <button class="console-tab active" data-tab="simrs" role="tab" aria-selected="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                <span>SIMRS_Forensics.php</span>
+              </button>
+              <button class="console-tab" data-tab="react" role="tab" aria-selected="false">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M12 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9z"></path>
+                </svg>
+                <span>React_AntreanQueue.tsx</span>
+              </button>
+              <button class="console-tab" data-tab="laravel" role="tab" aria-selected="false">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                <span>Laravel_SatuSehatBridge.php</span>
+              </button>
+              <button class="console-tab" data-tab="flutter" role="tab" aria-selected="false">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                <span>Flutter_PatientQueue.dart</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Code Body with Line Numbers -->
+          <div id="console-code-body" class="console-body" role="tabpanel" tabindex="0">
+            <!-- Dynamically populated by main.js -->
+          </div>
+
+          <div class="console-footer">
+            <div class="telemetry-tag">
+              <span class="telemetry-dot"></span>
+              <span id="console-telemetry-text">Architecture Validated • Latency: 12ms</span>
+            </div>
+            <div class="console-meta">
+              <span id="console-mode-label">PHP 8.2 • STRICT_TYPES</span>
+            </div>
           </div>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- =================================================================
+         METRICS / HIGHLIGHTS COUNTER
+         ================================================================= -->
+    <section class="metrics-section">
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-num"><span class="counter-val" data-target="100" data-suffix="+">0</span></div>
+            <div class="metric-label" data-i18n="metric_bugs_label">Bugs Sistem Dituntaskan</div>
+            <div class="metric-sub" data-i18n="metric_bugs_sub">Forensik troubleshooting & stabilisasi transaksi</div>
+          </div>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
+          <div class="metric-card">
+            <div class="metric-num"><span class="counter-val" data-target="5" data-suffix="+">0</span></div>
+            <div class="metric-label" data-i18n="metric_stack_label">Tech Stacks Utama</div>
+            <div class="metric-sub" data-i18n="metric_stack_sub">React, Flutter, Laravel, PHP Native, CodeIgniter</div>
+          </div>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/typed.js/typed.umd.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+          <div class="metric-card">
+            <div class="metric-num"><span class="counter-val" data-target="15" data-suffix="+">0</span></div>
+            <div class="metric-label" data-i18n="metric_api_label">API & WebServices</div>
+            <div class="metric-sub" data-i18n="metric_api_sub">Integrasi sistem, bridging & microservices</div>
+          </div>
 
-    <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
-  </body>
+          <div class="metric-card">
+            <div class="metric-num"><span class="counter-val" data-target="99.9" data-suffix="%">0</span></div>
+            <div class="metric-label" data-i18n="metric_uptime_label">Keandalan Sistem</div>
+            <div class="metric-sub" data-i18n="metric_uptime_sub">Ketersediaan layanan & integritas data</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         ABOUT SECTION (BENTO GRID)
+         ================================================================= -->
+    <section id="about" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="about_tag">Tentang Saya</span>
+          <h2 class="section-title" data-i18n="about_title">Rekayasa Perangkat Lunak & Arsitektur Sistem</h2>
+          <p class="section-desc" data-i18n="about_desc">Mengkombinasikan keahlian full-stack modern, pemecahan masalah kritis, dan arsitektur sistem andal.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Story Bento Box -->
+          <div class="bento-box bento-story">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4M12 8h.01"></path>
+              </svg>
+              <span data-i18n="about_story_title">Dedikasi & Rekayasa Perangkat Lunak</span>
+            </h3>
+            <p class="bento-p" data-i18n="about_story_p1">
+              Saya adalah seorang profesional IT bergelar Sarjana Komputer (S.Kom) dengan fokus mendalam pada rekayasa perangkat lunak, investigasi sistem, dan arsitektur data.
+            </p>
+            <p class="bento-p" data-i18n="about_story_p2">
+              Keahlian utama saya mencakup pencarian dan perbaikan bugs (Bug Hunting) pada SIMRS (Sistem Informasi Manajemen Rumah Sakit) untuk menjamin keandalan data medis, konsistensi transaksi database, dan pencegahan bottleneck antrean.
+            </p>
+            <p class="bento-p" data-i18n="about_story_p3">
+              Di ranah modern development, saya aktif mengembangkan aplikasi web interaktif dengan React, backend tangguh dengan Laravel & PHP Native, aplikasi mobile cross-platform dengan Flutter, serta perancangan API dan WebServices terenkripsi.
+            </p>
+          </div>
+
+          <!-- Profile Details Bento Box -->
+          <div class="bento-box bento-photo">
+            <div>
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;">
+                <img src="assets/img/profile-img.jpg" alt="Angel Bard Laklo, S.Kom" style="width: 58px; height: 58px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-cyan); box-shadow: 0 0 16px rgba(6, 182, 212, 0.35);" />
+                <div>
+                  <h4 style="font-size: 1.08rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.4rem; color: var(--text-main);">
+                    <span>Angel Bard Laklo, S.Kom</span>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="#06b6d4" title="Verified Professional"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  </h4>
+                  <span style="font-size: 0.8rem; color: var(--accent-cyan); font-family: var(--font-mono); font-weight: 500;">Software Engineer & Architect</span>
+                </div>
+              </div>
+              <p class="bento-p" data-i18n="about_bio_desc">Informasi data diri dan kualifikasi akademik:</p>
+            </div>
+
+            <ul class="profile-meta-list">
+              <li class="meta-item">
+                <span class="meta-key" data-i18n="meta_name">Nama Lengkap</span>
+                <span class="meta-val">Angel Bard Laklo, S.Kom</span>
+              </li>
+              <li class="meta-item">
+                <span class="meta-key" data-i18n="meta_location">Lokasi</span>
+                <span class="meta-val" data-i18n="meta_loc_val">Kupang, NTT, Indonesia (Batuplat)</span>
+              </li>
+              <li class="meta-item">
+                <span class="meta-key" data-i18n="meta_education">Pendidikan</span>
+                <span class="meta-val" data-i18n="meta_edu_val">S1 Ilmu Komputer (UNWIRA)</span>
+              </li>
+              <li class="meta-item">
+                <span class="meta-key" data-i18n="meta_degree_status">Status Gelar</span>
+                <span class="meta-val" data-i18n="meta_deg_val">On track Insinyur (Ir.)</span>
+              </li>
+              <li class="meta-item">
+                <span class="meta-key" data-i18n="meta_dob">Tanggal Lahir</span>
+                <span class="meta-val" data-i18n="meta_dob_val">04 Oktober (28 Tahun)</span>
+              </li>
+              <li class="meta-item">
+                <span class="meta-key" data-i18n="meta_job_status">Status Profesional</span>
+                <span class="meta-val" style="color: #10b981;" data-i18n="meta_job_val">Terbuka untuk Kolaborasi</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Specialties Bento Box -->
+          <div class="bento-box bento-info">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <span data-i18n="about_spec_title">Fokus & Bidang Keahlian Utama</span>
+            </h3>
+            <p class="bento-p" data-i18n="about_spec_desc">
+              Mengombinasikan pemecahan bugs tingkat lanjut, rekayasa full-stack web, aplikasi mobile, dan perancangan WebServices:
+            </p>
+            <div class="specialty-tags">
+              <span class="spec-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span data-i18n="spec_1">SIMRS Bug Hunting & System Troubleshooting</span>
+              </span>
+              <span class="spec-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span data-i18n="spec_2">Frontend Modern dengan React.js & Tailwind</span>
+              </span>
+              <span class="spec-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <span data-i18n="spec_3">Backend Laravel & Script PHP Native</span>
+              </span>
+              <span class="spec-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                <span data-i18n="spec_4">Pengembangan Mobile Multiplatform Flutter</span>
+              </span>
+              <span class="spec-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+                <span data-i18n="spec_5">Arsitektur API & Enterprise WebServices</span>
+              </span>
+              <span class="spec-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                <span data-i18n="spec_6">Real-Time Systems (WebSocket) & Bot Automations</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Motto & Vision Bento Box -->
+          <div class="bento-box bento-specialties">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+              <span data-i18n="about_motto_title">Filosofi & Prinsip Kerja</span>
+            </h3>
+            <p class="bento-p" data-i18n="about_motto_p1">
+              <strong>“Fortis Solus Stabit”</strong> — Kuat Berdiri Sendiri, Teguh Menghadapi Tantangan. Di dunia rekayasa perangkat lunak, keandalan dan integritas sistem adalah prioritas mutlak.
+            </p>
+            <p class="bento-p" data-i18n="about_motto_p2">
+              Setiap baris kode, query database, dan endpoint API dirancang dengan pertimbangan keamanan tinggi, skalabilitas, dan efisiensi performa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CAREER & EDUCATION TIMELINE
+         ================================================================= -->
+    <section id="experience" class="section-padding" style="background: rgba(255, 255, 255, 0.01);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="exp_tag">Jejak Langkah</span>
+          <h2 class="section-title" data-i18n="exp_title">Pengalaman & Riwayat Pendidikan</h2>
+          <p class="section-desc" data-i18n="exp_desc">Rekam jejak kepemimpinan teknis dan kontribusi nyata dalam pengembangan sistem informasi.</p>
+          <div style="margin-top: 1.25rem;">
+            <button id="open-cv-btn-2" class="btn-cta" style="font-size: 0.85rem; padding: 0.5rem 1.1rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span data-i18n="exp_btn_cv">Pratinjau & Cetak Curriculum Vitae (CV)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="timeline-wrap">
+          <!-- Professional Experience Column -->
+          <div>
+            <h3 class="timeline-col-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+              <span data-i18n="timeline_work_title">Pengalaman Profesional</span>
+            </h3>
+
+            <div class="timeline-list">
+              <!-- Item 1: Head of Infrastructure -->
+              <div class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                  <span class="timeline-badge badge-current" data-i18n="role_1_badge">Sekarang / Present</span>
+                  <h4 class="timeline-role" data-i18n="role_1_title">Head of Infrastructure and System Development Unit</h4>
+                  <div class="timeline-org" data-i18n="role_1_org">Healthcare Information Technology Division</div>
+                  <p class="timeline-desc" data-i18n="role_1_desc">
+                    Bertanggung jawab penuh memimpin, merencanakan, mengimplementasikan, dan mengendalikan infrastruktur teknologi informasi serta pengembangan sistem terpadu guna memastikan layanan IT yang aman, andal, dan efisien.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2: Head of HIS Installation -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                  <span class="timeline-badge" data-i18n="role_2_badge">2023 - 2024</span>
+                  <h4 class="timeline-role" data-i18n="role_2_title">Head of Hospital Information System Installation</h4>
+                  <div class="timeline-org" data-i18n="role_2_org">Hospital Systems Division</div>
+                  <p class="timeline-desc" data-i18n="role_2_desc">
+                    Memimpin koordinasi dan supervisi proses instalasi, kustomisasi konfigurasi, serta deployment Sistem Informasi Manajemen Rumah Sakit (SIMRS) di seluruh modul operasional.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3: PIC HIS Installation -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                  <span class="timeline-badge" data-i18n="role_3_badge">2022 - 2023</span>
+                  <h4 class="timeline-role" data-i18n="role_3_title">Person In Charge (PIC) of HIS Installation</h4>
+                  <div class="timeline-org" data-i18n="role_3_org">Hospital Systems Division</div>
+                  <p class="timeline-desc" data-i18n="role_3_desc">
+                    Menjadi penanggung jawab teknis dalam integrasi dan operasional harian SIMRS, memastikan alur data dan stabilitas sistem berjalan optimal.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 4: IT Support & Specialist -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                  <span class="timeline-badge" data-i18n="role_4_badge">2022 - 2025</span>
+                  <h4 class="timeline-role" data-i18n="role_4_title">IT Specialist & System Support</h4>
+                  <div class="timeline-org" data-i18n="role_4_org">Information Technology Unit</div>
+                  <p class="timeline-desc" data-i18n="role_4_desc">
+                    Mengembangkan aplikasi web dan mobile berbasis CodeIgniter, Laravel, Android Studio & Flutter, integrasi API sistem, pemeliharaan basis data, serta riset WebSocket real-time dan bot WhatsApp.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education Column -->
+          <div>
+            <h3 class="timeline-col-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span data-i18n="timeline_edu_title">Pendidikan & Kualifikasi</span>
+            </h3>
+
+            <div class="timeline-list">
+              <!-- Item 1: Bachelor Degree -->
+              <div class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                  <span class="timeline-badge badge-current">2017 - 2022</span>
+                  <h4 class="timeline-role" data-i18n="edu_1_title">Bachelor of Computer Science (S.Kom)</h4>
+                  <div class="timeline-org" data-i18n="edu_1_org">Universitas Katolik Widya Mandira (UNWIRA)</div>
+                  <p class="timeline-desc" data-i18n="edu_1_desc">
+                    Konsentrasi Bidang: <strong>Mobile Computing & Software Engineering</strong>.<br />
+                    Menyelesaikan studi Sarjana Ilmu Komputer dengan <strong>IPK 3.30</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2: Engineer Certification / Program -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                  <span class="timeline-badge badge-current">On Track</span>
+                  <h4 class="timeline-role" data-i18n="edu_2_title">Program Profesi Insinyur (Ir.)</h4>
+                  <div class="timeline-org" data-i18n="edu_2_org">Informatika / Computer Science Track</div>
+                  <p class="timeline-desc" data-i18n="edu_2_desc">
+                    Melanjutkan peningkatan kompetensi profesional keinsinyuran untuk sertifikasi gelar Insinyur (Ir.).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3: Core Philosophy & Soft Skills -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                  <span class="timeline-badge">Core Competencies</span>
+                  <h4 class="timeline-role" data-i18n="edu_3_title">Kepemimpinan Teknis & Manajemen Tim</h4>
+                  <div class="timeline-org" data-i18n="edu_3_org">IT Leadership & Governance</div>
+                  <p class="timeline-desc" data-i18n="edu_3_desc">
+                    Berpengalaman memimpin tim teknis IT, manajemen proyek software, mitigasi bugs, dan standarisasi SOP teknologi.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         FEATURED PROJECTS & CASE STUDIES
+         ================================================================= -->
+    <section id="projects" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="projects_tag">Portofolio Karya</span>
+          <h2 class="section-title" data-i18n="projects_title">Proyek Unggulan & Solusi Nyata</h2>
+          <p class="section-desc" data-i18n="projects_desc">Implementasi sistem informasi, integrasi API, otomatisasi bot, dan aplikasi mobile modern.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Semua Solusi</button>
+          <button class="filter-btn" data-filter="simrs" data-i18n="filter_simrs">🐞 SIMRS & Bug Hunting</button>
+          <button class="filter-btn" data-filter="react" data-i18n="filter_react">⚛️ React & Web</button>
+          <button class="filter-btn" data-filter="laravel" data-i18n="filter_laravel">🔴 Laravel & WebService</button>
+          <button class="filter-btn" data-filter="flutter" data-i18n="filter_flutter">📱 Flutter & Mobile</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+          <!-- Project 1: SIMRS Bug Hunter -->
+          <div class="project-card" data-category="simrs">
+            <div class="project-thumb">
+              <svg class="project-mockup-bg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#0b1322"/>
+                <circle cx="200" cy="120" r="70" fill="#ef4444" opacity="0.15"/>
+                <rect x="50" y="40" width="300" height="160" rx="10" fill="#131e33" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6 3"/>
+                <circle cx="90" cy="80" r="14" fill="#ef4444" opacity="0.3"/>
+                <path d="M85 75l10 10M95 75l-10 10" stroke="#ef4444" stroke-width="2"/>
+                <text x="115" y="85" font-family="monospace" font-size="13" font-weight="bold" fill="#f87171">BUG DETECTED & RESOLVED</text>
+                <rect x="80" y="110" width="240" height="20" rx="4" fill="#0f172a"/>
+                <text x="90" y="124" font-family="monospace" font-size="10" fill="#38bdf8">SIMRS DB Concurrency Lock -> Patched</text>
+                <rect x="80" y="140" width="240" height="36" rx="4" fill="#0f172a"/>
+                <text x="90" y="156" font-family="monospace" font-size="10" fill="#10b981">Query Optimization: -78% Latency</text>
+                <text x="90" y="168" font-family="monospace" font-size="9" fill="#94a3b8">Status: Transaksi 100% Konsisten</text>
+              </svg>
+              <span class="project-overlay-badge" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">🐞 Forensic Bug Hunter</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">SIMRS Bug Hunting & System Diagnostics</h3>
+              <p class="project-desc">
+                Investigasi mendalam dan troubleshooting bugs kritis pada alur transaksi kasir, rekam medis elektronik, deadlock database, dan penstabilan performa sistem rumah sakit.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">SIMRS</span>
+                <span class="tag-pill">Bug Hunting</span>
+                <span class="tag-pill">PHP Native</span>
+                <span class="tag-pill">SQL Profiler</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn-details" data-project="simrs-bug-hunter">
+                  <span data-i18n="view_details">Lihat Detail Arsitektur</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: React Healthcare Portal -->
+          <div class="project-card" data-category="react">
+            <div class="project-thumb">
+              <svg class="project-mockup-bg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#071524"/>
+                <ellipse cx="200" cy="120" rx="90" ry="35" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                <ellipse cx="200" cy="120" rx="90" ry="35" fill="none" stroke="#06b6d4" stroke-width="2" transform="rotate(60 200 120)" opacity="0.6"/>
+                <ellipse cx="200" cy="120" rx="90" ry="35" fill="none" stroke="#06b6d4" stroke-width="2" transform="rotate(120 200 120)" opacity="0.6"/>
+                <circle cx="200" cy="120" r="10" fill="#06b6d4"/>
+                <rect x="70" y="160" width="260" height="50" rx="8" fill="#0b172a" stroke="#1e293b"/>
+                <text x="85" y="188" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38bdf8">React 18 SPA + Tailwind CSS</text>
+                <text x="85" y="202" font-family="sans-serif" font-size="10" fill="#94a3b8">Reactive State & Clean Component UI</text>
+              </svg>
+              <span class="project-overlay-badge" style="color: #06b6d4; border-color: rgba(6, 182, 212, 0.3);">⚛️ React Frontend</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Modern Healthcare Web App with React</h3>
+              <p class="project-desc">
+                Pengembangan dashboard website klinis modern berkecepatan tinggi dengan React dan Tailwind CSS. Prototyping cepat dengan performa tinggi dan integrasi API instan.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">React.js</span>
+                <span class="tag-pill">Tailwind CSS</span>
+                <span class="tag-pill">Vite</span>
+                <span class="tag-pill">SPA</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn-details" data-project="react-portal">
+                  <span data-i18n="view_details">Lihat Detail Arsitektur</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Laravel & PHP Native WebService -->
+          <div class="project-card" data-category="laravel">
+            <div class="project-thumb">
+              <svg class="project-mockup-bg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#180b11"/>
+                <rect x="60" y="30" width="280" height="180" rx="10" fill="#241019" stroke="#f43f5e" stroke-width="1.5"/>
+                <circle cx="100" cy="70" r="15" fill="#f43f5e" opacity="0.3"/>
+                <text x="93" y="75" font-family="sans-serif" font-size="14" font-weight="bold" fill="#fb7185">L</text>
+                <text x="125" y="75" font-family="monospace" font-size="13" font-weight="bold" fill="#fda4af">Laravel + PHP Native</text>
+                <rect x="80" y="105" width="240" height="85" rx="6" fill="#14070d" stroke="#371421"/>
+                <text x="95" y="128" font-family="monospace" font-size="11" fill="#f43f5e">POST /api/v1/webservice/sync</text>
+                <text x="95" y="148" font-family="monospace" font-size="10" fill="#10b981">Status: 200 OK (Latency 48ms)</text>
+                <text x="95" y="168" font-family="monospace" font-size="9" fill="#94a3b8">Payload Auth: Sanctum & HMAC SHA256</text>
+              </svg>
+              <span class="project-overlay-badge" style="color: #f43f5e; border-color: rgba(244, 63, 94, 0.3);">🔴 Laravel & WebService</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Laravel & PHP Native WebService Gateway</h3>
+              <p class="project-desc">
+                Backend engine berkecepatan tinggi yang menggabungkan framework Laravel dan PHP Native untuk menangani WebServices, enkripsi data, dan routing API skala besar.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">Laravel 11</span>
+                <span class="tag-pill">PHP Native</span>
+                <span class="tag-pill">WebServices</span>
+                <span class="tag-pill">RESTful API</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn-details" data-project="laravel-webservice">
+                  <span data-i18n="view_details">Lihat Detail Arsitektur</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Flutter Cross-Platform Mobile -->
+          <div class="project-card" data-category="flutter">
+            <div class="project-thumb">
+              <svg class="project-mockup-bg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#081422"/>
+                <rect x="135" y="20" width="130" height="200" rx="18" fill="#0e2338" stroke="#38bdf8" stroke-width="2"/>
+                <rect x="175" y="28" width="50" height="5" rx="2.5" fill="#475569"/>
+                <path d="M165 70l20 20-20 20M185 90l25-25M175 130l35-35" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                <text x="155" y="165" font-family="sans-serif" font-size="11" font-weight="bold" fill="#38bdf8">Flutter App</text>
+                <text x="145" y="180" font-family="sans-serif" font-size="9" fill="#94a3b8">Android & iOS 60fps</text>
+              </svg>
+              <span class="project-overlay-badge" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">📱 Flutter & Dart</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Healthcare Cross-Platform App with Flutter</h3>
+              <p class="project-desc">
+                Aplikasi mobile multiplatform (Android & iOS) menggunakan Flutter dan Dart untuk memudahkan pemantauan antrean, jadwal dokter, dan layanan kesehatan langsung dari smartphone.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">Flutter</span>
+                <span class="tag-pill">Dart</span>
+                <span class="tag-pill">Cross-Platform</span>
+                <span class="tag-pill">Mobile UI</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn-details" data-project="flutter-mobile">
+                  <span data-i18n="view_details">Lihat Detail Arsitektur</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: SIMRS Core -->
+          <div class="project-card" data-category="simrs">
+            <div class="project-thumb">
+              <svg class="project-mockup-bg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#0d1527"/>
+                <circle cx="200" cy="120" r="80" fill="url(#grad1)" opacity="0.3"/>
+                <rect x="50" y="40" width="300" height="160" rx="8" fill="#162032" stroke="#253550" stroke-width="2"/>
+                <rect x="70" y="60" width="80" height="15" rx="4" fill="#06b6d4" opacity="0.8"/>
+                <rect x="70" y="85" width="120" height="8" rx="2" fill="#64748b"/>
+                <rect x="70" y="100" width="180" height="8" rx="2" fill="#475569"/>
+                <rect x="70" y="125" width="260" height="55" rx="6" fill="#0f172a" stroke="#1e293b"/>
+                <defs><linearGradient id="grad1" x1="120" y1="40" x2="280" y2="200"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs>
+              </svg>
+              <span class="project-overlay-badge">🏥 HIS / SIMRS</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Hospital Information System (HIS / SIMRS) Core</h3>
+              <p class="project-desc">
+                Arsitektur dan instalasi sistem informasi manajemen rumah sakit terpadu untuk rawat jalan, rawat inap, farmasi, kasir, dan integrasi laboratorium.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">CodeIgniter</span>
+                <span class="tag-pill">PHP</span>
+                <span class="tag-pill">PostgreSQL</span>
+                <span class="tag-pill">SIMRS</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn-details" data-project="simrs-ben-mboi">
+                  <span data-i18n="view_details">Lihat Detail Arsitektur</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Real-time WebSocket Queue -->
+          <div class="project-card" data-category="react">
+            <div class="project-thumb">
+              <svg class="project-mockup-bg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#0a1220"/>
+                <rect x="40" y="30" width="320" height="180" rx="10" fill="#121d30" stroke="#1e2e4a" stroke-width="2"/>
+                <circle cx="80" cy="65" r="16" fill="#10b981" opacity="0.2"/>
+                <circle cx="80" cy="65" r="8" fill="#10b981"/>
+                <rect x="110" y="58" width="160" height="14" rx="4" fill="#f1f5f9"/>
+                <rect x="60" y="100" width="130" height="85" rx="8" fill="#0b1322" stroke="#06b6d4" stroke-width="1.5"/>
+                <text x="75" y="145" font-family="Outfit" font-size="28" font-weight="bold" fill="#06b6d4">A-042</text>
+                <text x="75" y="165" font-family="sans-serif" font-size="10" fill="#94a3b8">COUNTER 01</text>
+                <rect x="210" y="100" width="130" height="85" rx="8" fill="#0b1322" stroke="#6366f1" stroke-width="1.5"/>
+                <text x="225" y="145" font-family="Outfit" font-size="28" font-weight="bold" fill="#818cf8">B-108</text>
+                <text x="225" y="165" font-family="sans-serif" font-size="10" fill="#94a3b8">PHARMACY</text>
+              </svg>
+              <span class="project-overlay-badge">⚡ Real-Time Engine</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Real-Time Patient Queue & Display Synchronizer</h3>
+              <p class="project-desc">
+                Sistem antrean publik real-time multi-loket dengan WebSocket, notifikasi suara otomatis (TTS), dan sinkronisasi tampilan display tanpa reload browser.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">WebSocket</span>
+                <span class="tag-pill">JavaScript ES6</span>
+                <span class="tag-pill">Node.js</span>
+                <span class="tag-pill">PHP</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn-details" data-project="websocket-queue">
+                  <span data-i18n="view_details">Lihat Detail Arsitektur</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         SKILLS & TECHNICAL ARSENAL
+         ================================================================= -->
+    <section id="skills" class="section-padding" style="background: rgba(255, 255, 255, 0.015);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="skills_tag">Keahlian Teknis</span>
+          <h2 class="section-title" data-i18n="skills_title">Keahlian & Teknologi Pilihan</h2>
+          <p class="section-desc" data-i18n="skills_desc">Penguasaan perangkat lunak, bahasa pemrograman, dan infrastruktur sistem dengan standar efisiensi industri.</p>
+        </div>
+
+        <div class="skills-container" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          <!-- Category 1: Frontend & Vibe Tech -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" style="color: #06b6d4; background: rgba(6, 182, 212, 0.1);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="category-title" data-i18n="cat_frontend">Frontend & Modern Web</h3>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">React.js & Component Architecture</span>
+                  <span class="skill-percent">92%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="92%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Tailwind CSS & Modern UI</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="90%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">JavaScript (ES6+, DOM, Fetch, Async)</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="90%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">HTML5 Semantic & SEO Architecture</span>
+                  <span class="skill-percent">100%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="100%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Backend, APIs & WebServices -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" style="color: #f43f5e; background: rgba(244, 63, 94, 0.1);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 17l6-6-6-6"></path>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+              </div>
+              <h3 class="category-title" data-i18n="cat_backend">Backend & WebServices</h3>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Laravel Framework (10 / 11)</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="90%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">PHP Native & OOP Architecture</span>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="95%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">CodeIgniter (CI3 / CI4)</span>
+                  <span class="skill-percent">100%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="100%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Enterprise WebServices & REST APIs</span>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="95%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: Mobile & Real-Time Tech -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+              </div>
+              <h3 class="category-title" data-i18n="cat_mobile">Mobile & Real-Time Tech</h3>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Flutter & Dart Multiplatform</span>
+                  <span class="skill-percent">88%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="88%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Android Studio & Mobile Computing</span>
+                  <span class="skill-percent">85%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="85%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">WebSocket Protocols & Live Sync</span>
+                  <span class="skill-percent">88%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="88%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">WhatsApp Bots & Webhook Automations</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="90%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4: SIMRS Bug Hunting & Systems -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.1);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <h3 class="category-title" data-i18n="cat_diagnostics">SIMRS & Bug Diagnostics</h3>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">SIMRS Bug Hunting & Forensic Audit</span>
+                  <span class="skill-percent">96%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="96%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">SQL Database & Transaction Locking</span>
+                  <span class="skill-percent">92%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="92%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">SATUSEHAT (FHIR) & BPJS Bridging</span>
+                  <span class="skill-percent">94%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="94%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Server Infrastructure & Security</span>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="95%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CONTACT & GET IN TOUCH SECTION
+         ================================================================= -->
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="contact_tag">Kontak & Diskusi</span>
+          <h2 class="section-title" data-i18n="contact_title">Mari Terhubung & Berkolaborasi</h2>
+          <p class="section-desc" data-i18n="contact_desc">Punya pertanyaan seputar konsultasi sistem informasi, pengembangan web/mobile, atau peluang kerja sama profesional?</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left Column: Direct Channels -->
+          <div class="contact-info-card">
+            <div>
+              <h3 data-i18n="contact_direct_title">Hubungi Langsung</h3>
+              <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;" data-i18n="contact_direct_p">
+                Saya selalu terbuka untuk berdiskusi mengenai proyek rekayasa software, arsitektur IT, maupun konsultasi sistem.
+              </p>
+
+              <div class="contact-channels">
+                <!-- WhatsApp -->
+                <div class="channel-card">
+                  <div class="channel-icon wa">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                  </div>
+                  <div class="channel-text">
+                    <span class="channel-title" data-i18n="channel_wa_title">WhatsApp Langsung</span>
+                    <a href="https://wa.me/6285333921117" target="_blank" rel="noopener noreferrer" class="channel-value">+62 853 3392 1117</a>
+                  </div>
+                  <button class="copy-btn" data-copy="085333921117" title="Salin Nomor" data-i18n="copy_btn">Salin</button>
+                </div>
+
+                <!-- Email -->
+                <div class="channel-card">
+                  <div class="channel-icon email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <div class="channel-text">
+                    <span class="channel-title" data-i18n="channel_email_title">Alamat Email</span>
+                    <a href="mailto:bardlaklo04@gmail.com" class="channel-value">bardlaklo04@gmail.com</a>
+                  </div>
+                  <button class="copy-btn" data-copy="bardlaklo04@gmail.com" title="Salin Email" data-i18n="copy_btn">Salin</button>
+                </div>
+
+                <!-- Location -->
+                <div class="channel-card">
+                  <div class="channel-icon location">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div class="channel-text">
+                    <span class="channel-title" data-i18n="channel_loc_title">Kota Domisili</span>
+                    <span class="channel-value" data-i18n="channel_loc_val">Batuplat, Kota Kupang, NTT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links in Card -->
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.4rem;">
+              <span style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono); letter-spacing: 0.05em; display: block; margin-bottom: 0.8rem;" data-i18n="social_title">
+                Media Sosial
+              </span>
+              <div style="display: flex; gap: 0.8rem;">
+                <a href="https://www.linkedin.com/in/angel-bard-laklo" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/engellaklo/" target="_blank" rel="noopener noreferrer" class="social-pill" title="Instagram">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://www.facebook.com/BardAngGelLaklo.sfk" target="_blank" rel="noopener noreferrer" class="social-pill" title="Facebook">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Form -->
+          <div class="contact-form-card">
+            <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem;" data-i18n="form_title">Kirim Pesan Instan</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;" data-i18n="form_desc">
+              Formulir ini otomatis menyiapkan pesan WhatsApp terformat agar komunikasi lebih cepat dan langsung ke smartphone saya.
+            </p>
+
+            <form id="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-name" class="form-label" data-i18n="form_name_label">Nama Lengkap *</label>
+                  <input type="text" id="contact-name" class="form-control" placeholder="Contoh: Budi Pratama" data-i18n-placeholder="form_name_placeholder" required />
+                </div>
+                <div class="form-group">
+                  <label for="contact-email" class="form-label" data-i18n="form_email_label">Email Anda</label>
+                  <input type="email" id="contact-email" class="form-control" placeholder="budi@example.com" data-i18n-placeholder="form_email_placeholder" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label" data-i18n="form_subject_label">Topik Diskusi / Subjek</label>
+                <input type="text" id="contact-subject" class="form-control" placeholder="Contoh: Konsultasi Sistem / Proyek Web & Mobile" data-i18n-placeholder="form_subject_placeholder" />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label" data-i18n="form_msg_label">Pesan Anda *</label>
+                <textarea id="contact-message" class="form-control" placeholder="Tuliskan kebutuhan atau detail diskusi Anda di sini..." data-i18n-placeholder="form_msg_placeholder" required></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                <span data-i18n="form_submit">Kirim Pesan via WhatsApp</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================
+       MODAL: PROJECT DETAILS
+       ================================================================= -->
+  <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button id="modal-close-btn" class="modal-close" aria-label="Tutup Jendela Detail">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <span id="modal-category" class="section-tag" style="margin-bottom: 0.6rem;">Kategori</span>
+      <h3 id="modal-title" style="font-size: 1.55rem; margin-bottom: 1rem;">Judul Proyek</h3>
+      
+      <p id="modal-desc" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.4rem;">
+        Deskripsi detail arsitektur proyek.
+      </p>
+
+      <div style="margin-bottom: 1.4rem;">
+        <h4 style="font-size: 1.05rem; margin-bottom: 0.6rem; color: var(--accent-cyan);">Pencapaian & Fitur Kunci:</h4>
+        <ul id="modal-highlights" style="padding-left: 1.2rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.75;">
+          <!-- Injected by JS -->
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.4rem;">
+        <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--text-main);">Teknologi Digunakan:</h4>
+        <p id="modal-tech" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-teal); background: rgba(16, 185, 129, 0.08); padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid rgba(16, 185, 129, 0.2);">
+          Tech stack info
+        </p>
+      </div>
+
+      <div>
+        <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-dim); text-transform: uppercase;">Tags:</h4>
+        <div id="modal-tags" style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================================================
+       MODAL: CURRICULUM VITAE (CV) VIEWER
+       ================================================================= -->
+  <div id="cv-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cv-title">
+    <div class="modal-card" style="max-width: 760px;">
+      <button id="cv-close-btn" class="modal-close" aria-label="Tutup CV">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; border-bottom: 2px solid var(--border-subtle); padding-bottom: 1.25rem; margin-bottom: 1.5rem;">
+        <div>
+          <h2 id="cv-title" style="font-size: 1.7rem; margin-bottom: 0.3rem;">Angel Bard Laklo, <span class="gradient-text">S.Kom</span></h2>
+          <p style="color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem;">Full-Stack Engineer & System Architect</p>
+          <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 0.2rem;" data-i18n="meta_loc_val">Kupang, NTT, Indonesia (Batuplat)</p>
+        </div>
+        <div style="display: flex; gap: 0.6rem;">
+          <button onclick="window.print()" class="btn-cta" style="font-size: 0.84rem; padding: 0.45rem 0.95rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span data-i18n="cv_print_btn">Cetak / Simpan PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CV Summary -->
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.5rem; text-transform: uppercase; font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.05em; color: var(--accent-cyan);" data-i18n="cv_summary_title">Ringkasan Profesional</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65;" data-i18n="cv_summary_text">
+          Innovative and deadline-driven IT Specialist & System Architect dengan keahlian mendalam dalam SIMRS Bug Hunting & optimasi basis data, pengembangan antarmuka web modern dengan React & Tailwind CSS, rekayasa backend berkecepatan tinggi dengan Laravel & PHP Native, aplikasi mobile cross-platform Flutter & Dart, serta integrasi Enterprise WebServices & RESTful APIs.
+        </p>
+      </div>
+
+      <!-- CV Experience -->
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.8rem; text-transform: uppercase; font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.05em; color: var(--accent-cyan);" data-i18n="cv_exp_title">Pengalaman Kerja</h3>
+        
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.95rem;">
+            <span data-i18n="role_1_title">Head of Infrastructure and System Development Unit</span>
+            <span style="color: var(--accent-teal); font-family: var(--font-mono); font-size: 0.82rem;" data-i18n="role_1_badge">Sekarang / Present</span>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.35rem;" data-i18n="role_1_org">Healthcare Information Technology Division</div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;" data-i18n="role_1_desc">Memimpin, merencanakan, dan mengendalikan infrastruktur teknologi informasi serta pengembangan sistem terpadu guna memastikan layanan IT yang aman, andal, dan efisien.</p>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.95rem;">
+            <span data-i18n="role_2_title">Head of Hospital Information System Installation</span>
+            <span style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.82rem;" data-i18n="role_2_badge">2023 - 2024</span>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.35rem;" data-i18n="role_2_org">Hospital Systems Division</div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;" data-i18n="role_2_desc">Mengkoordinasikan dan mengawasi implementasi dan konfigurasi SIMRS agar seluruh komponen berjalan selaras dengan kebutuhan operasional.</p>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.95rem;">
+            <span data-i18n="role_3_title">PIC Hospital Information System Installation</span>
+            <span style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.82rem;" data-i18n="role_3_badge">2022 - 2023</span>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.35rem;" data-i18n="role_3_org">Hospital Systems Division</div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;" data-i18n="role_3_desc">Penanggung jawab teknis SIMRS, rekayasa integrasi API, serta pemeliharaan basis data dan aplikasi internal.</p>
+        </div>
+      </div>
+
+      <!-- CV Education -->
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.05em; color: var(--accent-cyan);" data-i18n="cv_edu_title">Pendidikan</h3>
+        <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.95rem;">
+          <span data-i18n="edu_1_title">Bachelor of Computer Science (S.Kom)</span>
+          <span style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.82rem;">2017 - 2022</span>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-dim);" data-i18n="edu_1_org">Universitas Katolik Widya Mandira (UNWIRA) • IPK 3.30</div>
+      </div>
+
+      <!-- CV Contacts -->
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+        <span>📱 +62 853 3392 1117</span>
+        <span>✉️ bardlaklo04@gmail.com</span>
+        <span>🔗 linkedin.com/in/angel-bard-laklo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notice Element -->
+  <div id="toast-notice" class="toast-notice"></div>
+
+  <!-- =================================================================
+       FOOTER
+       ================================================================= -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="brand-logo">
+        <span class="dot"></span>
+        <span>Abl<span class="gradient-text">.</span></span>
+      </div>
+
+      <div class="footer-motto" data-i18n="footer_motto">
+        Eccedentesiast • Fortis Solus Stabit
+      </div>
+
+      <div style="display: flex; gap: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">
+        <a href="#hero" data-i18n="nav_home">Home</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#experience" data-i18n="nav_experience">Experience</a>
+        <a href="#projects" data-i18n="nav_projects">Projects</a>
+        <a href="#skills" data-i18n="nav_skills">Skills</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </div>
+
+      <div class="footer-copy">
+        &copy; <span id="current-year"></span> Angel Bard Laklo, S.Kom. <span data-i18n="footer_copy">All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Auto update copyright year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
