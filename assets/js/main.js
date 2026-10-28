@@ -222,10 +222,14 @@ const translations = {
     form_msg_placeholder: "Tuliskan kebutuhan atau detail diskusi Anda di sini...",
     form_submit: "Kirim Pesan via WhatsApp",
 
+    cv_badge_role: "Vibe Coder & Healthcare IT Specialist",
     cv_summary_title: "Ringkasan Profesional",
     cv_summary_text: "Sarjana Komputer (S.Kom) dan Vibe Coder yang adaptif, mengombinasikan logika komputasi, investigasi SIMRS bugs, dan akselerasi workflow AI modern untuk mengembangkan solusi Web modern (React), Mobile cross-platform (Flutter), serta integrasi API & WebServices (Laravel & PHP) secara cepat, efisien, dan tepat sasaran.",
+    cv_skills_title: "Keahlian Teknis & Tools",
     cv_exp_title: "Pengalaman Kerja",
-    cv_edu_title: "Pendidikan",
+    cv_projects_title: "Proyek & Pencapaian Utama",
+    cv_edu_title: "Riwayat Pendidikan",
+    cv_lang_title: "Penguasaan Bahasa",
     cv_print_btn: "Cetak / Simpan PDF",
 
     footer_motto: "Eccedentesiast • Fortis Solus Stabit",
@@ -374,10 +378,14 @@ const translations = {
     form_msg_placeholder: "Write your requirements or discussion details here...",
     form_submit: "Send Message via WhatsApp",
 
+    cv_badge_role: "Vibe Coder & Healthcare IT Specialist",
     cv_summary_title: "Professional Summary",
     cv_summary_text: "Computer Science graduate (S.Kom) and agile Vibe Coder, merging computational logic, SIMRS bug hunting, and modern AI acceleration workflows to rapidly build modern Web (React), cross-platform Mobile (Flutter), and API/WebServices (Laravel & PHP) solutions with efficiency and precision.",
+    cv_skills_title: "Technical Skills & Competencies",
     cv_exp_title: "Work Experience",
-    cv_edu_title: "Education",
+    cv_projects_title: "Key Projects & Impact",
+    cv_edu_title: "Education & Qualifications",
+    cv_lang_title: "Languages",
     cv_print_btn: "Print / Save PDF",
 
     footer_motto: "Eccedentesiast • Fortis Solus Stabit",
