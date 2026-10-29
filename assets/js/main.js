@@ -303,22 +303,138 @@ function initBorderGlow() {
 }
 
 /* -------------------------------------------------------------------
-   7. REAL MUSIC / CODING VIBES AUDIO PLAYER
-   Song: VENDETTA RAP — Tangkap Basah (feat. Bringin Home)
+   7. REAL MULTI-TRACK PLAYLIST ENGINE
+   Interactive Music Player with Prev, Next, Stop, Shuffle, Repeat & Auto-Play
+   Featuring 9 curated NTT & Timur Coding Vibes tracks
    ------------------------------------------------------------------- */
 function initSpotifyPlayer() {
-  const playBtn = document.getElementById('spotify-play-btn');
-  const audioNavBtn = document.getElementById('navbar-audio-btn');
   const audio = document.getElementById('coding-audio-player');
+  const playBtn = document.getElementById('spotify-play-btn');
+  const prevBtn = document.getElementById('spotify-prev-btn');
+  const nextBtn = document.getElementById('spotify-next-btn');
+  const stopBtn = document.getElementById('spotify-stop-btn');
+  const shuffleBtn = document.getElementById('spotify-shuffle-btn');
+  const repeatBtn = document.getElementById('spotify-repeat-btn');
+  const audioNavBtn = document.getElementById('navbar-audio-btn');
+
+  const coverImg = document.getElementById('spotify-cover-img');
+  const albumArt = document.getElementById('spotify-album-art');
   const statusDot = document.getElementById('spotify-status-dot');
   const statusText = document.getElementById('spotify-status-text');
-  const albumArt = document.getElementById('spotify-album-art');
+  const trackTitle = document.getElementById('spotify-track-title');
+  const trackArtist = document.getElementById('spotify-track-artist');
+  const trackGenre = document.getElementById('spotify-track-genre');
+  const ytLink = document.getElementById('spotify-yt-link');
+  const modeText = document.getElementById('spotify-mode-text');
+
   const scrubber = document.getElementById('spotify-scrubber');
   const scrubberFill = document.getElementById('spotify-scrubber-fill');
   const curTimeEl = document.getElementById('spotify-cur-time');
   const totalTimeEl = document.getElementById('spotify-total-time');
 
+  const playlistToggle = document.getElementById('spotify-playlist-toggle');
+  const playlistToggleLabel = document.getElementById('playlist-toggle-label');
+  const playlistDrawer = document.getElementById('spotify-playlist-drawer');
+
   if (!audio) return;
+
+  const PLAYLIST = [
+    {
+      id: 1,
+      title: "Tangkap Basah",
+      artist: "VENDETTA RAP (feat. Bringin Home)",
+      genre: "NTT Hip-Hop",
+      audio: "assets/audio/track-1.mp3",
+      cover: "assets/img/track-1-cover.jpg",
+      youtube: "https://youtu.be/rMpJ3LEYdOA?si=xqtnkVKteWYHX3Hk",
+      duration: "03:47"
+    },
+    {
+      id: 2,
+      title: "Bebaskan Diriku",
+      artist: "Mario G. Klau X MONE BAND",
+      genre: "Pop NTT Live",
+      audio: "assets/audio/track-2.mp3",
+      cover: "assets/img/track-2-cover.jpg",
+      youtube: "https://youtu.be/4oB6BjcHJec?si=pdD0rtBcHkuV2BXz",
+      duration: "05:10"
+    },
+    {
+      id: 3,
+      title: "Jalan Pulang",
+      artist: "Willy Sopacua",
+      genre: "Timur Acoustic Pop",
+      audio: "assets/audio/track-3.mp3",
+      cover: "assets/img/track-3-cover.jpg",
+      youtube: "https://youtu.be/dTBgUVuHnbA?si=nvsIaDCJrZXLTVKA",
+      duration: "03:19"
+    },
+    {
+      id: 4,
+      title: "Trauma",
+      artist: "Twenty Eigth (Vendetta Rap)",
+      genre: "NTT Rap Melodic",
+      audio: "assets/audio/track-4.mp3",
+      cover: "assets/img/track-4-cover.jpg",
+      youtube: "https://youtu.be/oNAlhcdkJuA?si=3zMthtiwJwW89tXq",
+      duration: "04:17"
+    },
+    {
+      id: 5,
+      title: "LOVE KO YAA",
+      artist: "ONE SCOOT (feat. X'TATION, Pecha)",
+      genre: "Ambon / NTT Hip-Hop",
+      audio: "assets/audio/track-5.mp3",
+      cover: "assets/img/track-5-cover.jpg",
+      youtube: "https://youtu.be/nckPqKcAr_4?si=IMP-LdVUJZkaiAxX",
+      duration: "02:09"
+    },
+    {
+      id: 6,
+      title: "Trauma (Official Audio)",
+      artist: "VENDETTA RAP (feat. Not Empty, Bringin Home)",
+      genre: "NTT Hip-Hop Anthem",
+      audio: "assets/audio/track-6.mp3",
+      cover: "assets/img/track-6-cover.jpg",
+      youtube: "https://youtu.be/db-VCm7wJDU?si=32u0hs14NzjGvkMP",
+      duration: "04:15"
+    },
+    {
+      id: 7,
+      title: "Bercanda",
+      artist: "Silet Open Up, SonaOne",
+      genre: "Timur Hip-Hop",
+      audio: "assets/audio/track-7.mp3",
+      cover: "assets/img/track-7-cover.jpg",
+      youtube: "https://youtu.be/nYV4y8bl6E0?si=SQ2-wX1Ta8NeSs4s",
+      duration: "04:29"
+    },
+    {
+      id: 8,
+      title: "BODY PATA PATA",
+      artist: "FARIS ADAM (feat. Diva Aurel)",
+      genre: "Timur Party Vibes",
+      audio: "assets/audio/track-8.mp3",
+      cover: "assets/img/track-8-cover.jpg",
+      youtube: "https://youtu.be/4VVvXjmRk6g?si=zeREWhWIigkRKDI1",
+      duration: "04:29"
+    },
+    {
+      id: 9,
+      title: "Pulangkan Saja",
+      artist: "Rendy Da Silva (feat. Martin hill & Elrio)",
+      genre: "Kupang R&B Soul",
+      audio: "assets/audio/track-9.mp3",
+      cover: "assets/img/track-9-cover.jpg",
+      youtube: "https://youtu.be/osG7_bX1qxA?si=v5KsEnh91X2g_Dq_",
+      duration: "03:55"
+    }
+  ];
+
+  let currentIndex = 0;
+  let isShuffle = false;
+  let repeatMode = 'all'; // 'all', 'one', 'none'
+  let isPlaylistOpen = false;
 
   function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) return '00:00';
@@ -327,35 +443,108 @@ function initSpotifyPlayer() {
     return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
   }
 
+  function renderPlaylist() {
+    if (!playlistDrawer) return;
+    playlistDrawer.innerHTML = '';
+
+    PLAYLIST.forEach((track, idx) => {
+      const item = document.createElement('div');
+      item.className = `playlist-item ${idx === currentIndex ? 'is-active' : ''}`;
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', `Putar ${track.title} oleh ${track.artist}`);
+      item.innerHTML = `
+        <span class="playlist-item-idx">${String(idx + 1).padStart(2, '0')}</span>
+        <img src="${track.cover}" alt="${track.title}" class="playlist-item-thumb" loading="lazy" />
+        <div class="playlist-item-info">
+          <span class="playlist-item-title">${track.title}</span>
+          <span class="playlist-item-artist">${track.artist}</span>
+        </div>
+        <div class="playlist-item-meta">
+          <div class="playlist-mini-eq">
+            <span class="mini-eq-bar"></span>
+            <span class="mini-eq-bar"></span>
+            <span class="mini-eq-bar"></span>
+          </div>
+          <span class="playlist-item-duration">${track.duration}</span>
+        </div>
+      `;
+
+      item.addEventListener('click', () => {
+        loadTrack(idx, true);
+      });
+
+      playlistDrawer.appendChild(item);
+    });
+  }
+
+  function highlightPlaylistItem() {
+    const items = playlistDrawer ? playlistDrawer.querySelectorAll('.playlist-item') : [];
+    items.forEach((item, idx) => {
+      item.classList.toggle('is-active', idx === currentIndex);
+    });
+  }
+
   function updatePlayState(isPlaying) {
     if (isPlaying) {
       if (playBtn) {
-        playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+        playBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
         playBtn.setAttribute('title', 'Jeda Musik');
       }
       if (audioNavBtn) {
         audioNavBtn.classList.add('is-playing');
-        audioNavBtn.setAttribute('title', 'Musik Sedang Diputar: Tangkap Basah (Klik untuk Jeda)');
+        audioNavBtn.setAttribute('title', `Sedang Memutar: ${PLAYLIST[currentIndex].title} (Klik untuk Jeda)`);
       }
       if (albumArt) albumArt.classList.add('is-playing');
       if (statusDot) statusDot.classList.add('is-active');
-      if (statusText) statusText.textContent = 'NOW PLAYING • REAL AUDIO // VIBE CODING';
+      if (statusText) statusText.textContent = `NOW PLAYING [${currentIndex + 1}/${PLAYLIST.length}] // VIBE CODING`;
     } else {
       if (playBtn) {
-        playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+        playBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
         playBtn.setAttribute('title', 'Putar Musik Nyata');
       }
       if (audioNavBtn) {
         audioNavBtn.classList.remove('is-playing');
-        audioNavBtn.setAttribute('title', 'Putar Musik Pengiring Vibe Coding');
+        audioNavBtn.setAttribute('title', 'Putar Playlist Musik Vibe Coding');
       }
       if (albumArt) albumArt.classList.remove('is-playing');
       if (statusDot) statusDot.classList.remove('is-active');
-      if (statusText) statusText.textContent = 'PAUSED // KLIK PLAY UNTUK MEMUTAR';
+      if (statusText) statusText.textContent = `PAUSED [${currentIndex + 1}/${PLAYLIST.length}] // KLIK PLAY`;
+    }
+    highlightPlaylistItem();
+  }
+
+  function loadTrack(index, autoPlay = false) {
+    currentIndex = index;
+    const track = PLAYLIST[currentIndex];
+
+    audio.src = track.audio;
+    audio.load();
+
+    if (coverImg) coverImg.src = track.cover;
+    if (trackTitle) trackTitle.textContent = track.title;
+    if (trackArtist) trackArtist.textContent = track.artist;
+    if (trackGenre) trackGenre.textContent = track.genre;
+    if (totalTimeEl) totalTimeEl.textContent = track.duration;
+    if (curTimeEl) curTimeEl.textContent = '00:00';
+    if (scrubberFill) scrubberFill.style.width = '0%';
+    if (ytLink) ytLink.href = track.youtube;
+
+    highlightPlaylistItem();
+
+    if (autoPlay) {
+      audio.play().then(() => {
+        updatePlayState(true);
+      }).catch(err => {
+        console.warn('Playback error / user gesture needed:', err);
+        updatePlayState(false);
+      });
+    } else {
+      updatePlayState(false);
     }
   }
 
-  function toggleAudio() {
+  function togglePlay() {
     if (audio.paused) {
       audio.play().then(() => {
         updatePlayState(true);
@@ -368,8 +557,122 @@ function initSpotifyPlayer() {
     }
   }
 
-  if (playBtn) playBtn.addEventListener('click', toggleAudio);
-  if (audioNavBtn) audioNavBtn.addEventListener('click', toggleAudio);
+  function playNext() {
+    let nextIndex;
+    if (isShuffle) {
+      nextIndex = Math.floor(Math.random() * PLAYLIST.length);
+      if (nextIndex === currentIndex && PLAYLIST.length > 1) {
+        nextIndex = (currentIndex + 1) % PLAYLIST.length;
+      }
+    } else {
+      nextIndex = (currentIndex + 1) % PLAYLIST.length;
+    }
+    loadTrack(nextIndex, true);
+  }
+
+  function playPrev() {
+    if (audio.currentTime > 3) {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+      return;
+    }
+    let prevIndex = (currentIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
+    loadTrack(prevIndex, true);
+  }
+
+  function stopAudio() {
+    audio.pause();
+    audio.currentTime = 0;
+    if (scrubberFill) scrubberFill.style.width = '0%';
+    if (curTimeEl) curTimeEl.textContent = '00:00';
+    updatePlayState(false);
+    if (statusText) statusText.textContent = `STOPPED // KLIK PLAY UNTUK MEMUTAR`;
+  }
+
+  function toggleShuffle() {
+    isShuffle = !isShuffle;
+    if (shuffleBtn) {
+      shuffleBtn.classList.toggle('is-active', isShuffle);
+      shuffleBtn.setAttribute('title', isShuffle ? 'Acak Lagu: AKTIF' : 'Acak Lagu: NONAKTIF');
+    }
+    if (modeText) {
+      modeText.textContent = isShuffle
+        ? `Shuffle Mode Aktif (${PLAYLIST.length} Lagu)`
+        : `Auto-Play Playlist Aktif (${PLAYLIST.length} Lagu)`;
+    }
+  }
+
+  function toggleRepeat() {
+    if (repeatMode === 'all') {
+      repeatMode = 'one';
+      if (repeatBtn) {
+        repeatBtn.classList.add('is-active');
+        repeatBtn.setAttribute('title', 'Ulangi 1 Lagu Ini Saja (Repeat One)');
+        repeatBtn.innerHTML = `
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+          </svg>
+        `;
+      }
+      if (modeText) modeText.textContent = 'Mengulang 1 Lagu Ini Saja';
+    } else if (repeatMode === 'one') {
+      repeatMode = 'none';
+      if (repeatBtn) {
+        repeatBtn.classList.remove('is-active');
+        repeatBtn.setAttribute('title', 'Putar Sekali Lalu Berhenti (No Repeat)');
+        repeatBtn.innerHTML = `
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+          </svg>
+        `;
+      }
+      if (modeText) modeText.textContent = 'Berhenti Setelah Lagu Terakhir Selesai';
+    } else {
+      repeatMode = 'all';
+      if (repeatBtn) {
+        repeatBtn.classList.add('is-active');
+        repeatBtn.setAttribute('title', 'Mode Putar: Otomatis Lanjut Semua Lagu (Loop All)');
+        repeatBtn.innerHTML = `
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+          </svg>
+        `;
+      }
+      if (modeText) modeText.textContent = `Auto-Play Playlist Aktif (${PLAYLIST.length} Lagu)`;
+    }
+  }
+
+  function togglePlaylistDrawer() {
+    isPlaylistOpen = !isPlaylistOpen;
+    if (playlistDrawer) playlistDrawer.classList.toggle('is-open', isPlaylistOpen);
+    if (playlistToggle) {
+      playlistToggle.classList.toggle('is-open', isPlaylistOpen);
+      playlistToggle.setAttribute('aria-expanded', isPlaylistOpen);
+    }
+    if (playlistToggleLabel) {
+      playlistToggleLabel.textContent = isPlaylistOpen ? 'Tutup Playlist' : 'Lihat Playlist';
+    }
+  }
+
+  // Event Listeners for Player Controls
+  if (playBtn) playBtn.addEventListener('click', togglePlay);
+  if (audioNavBtn) audioNavBtn.addEventListener('click', togglePlay);
+  if (nextBtn) nextBtn.addEventListener('click', playNext);
+  if (prevBtn) prevBtn.addEventListener('click', playPrev);
+  if (stopBtn) stopBtn.addEventListener('click', stopAudio);
+  if (shuffleBtn) shuffleBtn.addEventListener('click', toggleShuffle);
+  if (repeatBtn) repeatBtn.addEventListener('click', toggleRepeat);
+  if (playlistToggle) playlistToggle.addEventListener('click', togglePlaylistDrawer);
 
   // Time & Progress update
   audio.addEventListener('timeupdate', () => {
@@ -385,23 +688,73 @@ function initSpotifyPlayer() {
     }
   });
 
+  // AUTO-PLAY NEXT SONG WHEN FINISHED!
   audio.addEventListener('ended', () => {
-    audio.currentTime = 0;
-    audio.play().catch(() => updatePlayState(false));
+    if (repeatMode === 'one') {
+      audio.currentTime = 0;
+      audio.play().catch(() => updatePlayState(false));
+    } else if (repeatMode === 'all' || isShuffle) {
+      playNext();
+    } else {
+      if (currentIndex < PLAYLIST.length - 1) {
+        playNext();
+      } else {
+        stopAudio();
+      }
+    }
   });
 
-  // Interactive scrubber seek
+  // Interactive scrubber seek (click or drag)
   if (scrubber) {
-    scrubber.addEventListener('click', (e) => {
+    let isScrubbing = false;
+
+    function seekTo(clientX) {
       const rect = scrubber.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
+      const clickX = clientX - rect.left;
       const width = rect.width;
       const pct = Math.max(0, Math.min(1, clickX / width));
       if (audio.duration) {
         audio.currentTime = pct * audio.duration;
       }
+    }
+
+    scrubber.addEventListener('mousedown', (e) => {
+      isScrubbing = true;
+      seekTo(e.clientX);
     });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isScrubbing) seekTo(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isScrubbing = false;
+    });
+
+    // Touch support for scrubber
+    scrubber.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) seekTo(e.touches[0].clientX);
+    }, { passive: true });
+
+    scrubber.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1) seekTo(e.touches[0].clientX);
+    }, { passive: true });
   }
+
+  // Keyboard controls shortcut (Space to play/pause when in view)
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      const rect = document.getElementById('spotify')?.getBoundingClientRect();
+      if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+        e.preventDefault();
+        togglePlay();
+      }
+    }
+  });
+
+  // Initialize Playlist UI & Load Track 1
+  renderPlaylist();
+  loadTrack(0, false);
 }
 
 /* -------------------------------------------------------------------
@@ -555,9 +908,9 @@ const translations = {
     about_story_p2: 'Didukung latar belakang di bidang Sistem Informasi Rumah Sakit (SIMRS) dan investigasi bugs kritis, saya memadukan intuisi teknis di lapangan dengan kecerdasan AI untuk menghasilkan sistem yang tidak hanya cepat dibuat, tapi juga stabil, aman, dan mudah dirawat.',
     about_story_p3: 'Dari antarmuka web interaktif (React), aplikasi mobile praktis (Flutter), hingga backend andal (Laravel & PHP Native), vibe coding memungkinkan saya menghadirkan solusi fungsional 10x lebih efisien.',
 
-    spotify_badge: 'REAL MUSIC • CODING VIBES',
+    spotify_badge: 'REAL MUSIC • TIMUR & CODING VIBES',
     spotify_title: 'A little music. <br><span>A lot of ideas.</span>',
-    spotify_desc: 'Lagu pengiring sesi Vibe Coding & perancangan arsitektur sistem: <strong>VENDETTA RAP — Tangkap Basah (feat. Bringin Home)</strong>. Musik nyata penuh energi khas Kupang, NTT.',
+    spotify_desc: 'Playlist musik pilihan khas Kupang & Indonesia Timur yang menemani sesi Vibe Coding larut malam, investigasi bugs SIMRS, dan perancangan integrasi API.',
     spotify_link: 'Dengarkan di Spotify',
 
     port_badge: 'KARYA & KOMPETENSI',
@@ -615,9 +968,9 @@ const translations = {
     about_story_p2: 'Backed by experience in Hospital Information Systems (HIS/SIMRS) and critical bug hunting, I combine practical domain intuition with AI acceleration to build systems that are not only delivered fast, but also stable, secure, and maintainable.',
     about_story_p3: 'From interactive web interfaces (React), responsive mobile apps (Flutter), to robust backends (Laravel & PHP Native), vibe coding empowers me to ship functional solutions 10x more efficiently.',
 
-    spotify_badge: 'REAL MUSIC • CODING VIBES',
+    spotify_badge: 'REAL MUSIC • TIMUR & CODING VIBES',
     spotify_title: 'A little music. <br><span>A lot of ideas.</span>',
-    spotify_desc: 'Soundtrack powering late-night Vibe Coding & system architecture sessions: <strong>VENDETTA RAP — Tangkap Basah (feat. Bringin Home)</strong>. Authentic Kupang, NTT hip-hop energy.',
+    spotify_desc: 'Curated Kupang & East Indonesia music playlist powering late-night Vibe Coding sessions, SIMRS bug forensics, and API bridging designs.',
     spotify_link: 'Listen on Spotify',
 
     port_badge: 'CREATIVE WORKS & SKILLS',

@@ -560,35 +560,36 @@
     </section>
 
     <!-- =================================================================
-         7. SPOTIFY / CODING VIBES SECTION (Real Music Player)
+         7. SPOTIFY / CODING VIBES SECTION (Real Multi-Track Music Player)
          ================================================================= -->
     <section id="spotify" class="spotify-section">
       <div class="container">
-        <!-- Hidden Native Audio Engine for Real Playback -->
-        <audio id="coding-audio-player" preload="metadata" src="assets/audio/vendetta-tangkap-basah.mp3"></audio>
+        <!-- Native Audio Element for Playlist Playback -->
+        <audio id="coding-audio-player" preload="metadata"></audio>
 
         <div class="spotify-card">
           <!-- Left Copy -->
           <div>
             <div class="spotify-eyebrow" data-i18n="spotify_badge">
               <span class="spotify-eyebrow-dot"></span>
-              REAL MUSIC • CODING VIBES
+              REAL MUSIC • TIMUR & CODING VIBES
             </div>
             <h2 class="spotify-title" data-i18n="spotify_title">
               A little music. <br />
               <span>A lot of ideas.</span>
             </h2>
             <p class="spotify-desc" data-i18n="spotify_desc">
-              Lagu pengiring sesi Vibe Coding & perancangan arsitektur sistem: <strong>VENDETTA RAP — Tangkap Basah (feat. Bringin Home)</strong>. Musik nyata penuh energi khas Kupang, NTT.
+              Playlist musik pilihan khas Kupang & Indonesia Timur yang menemani sesi Vibe Coding larut malam, investigasi bugs SIMRS, dan perancangan integrasi API.
             </p>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;">
-              <a href="https://youtu.be/rMpJ3LEYdOA?si=xqtnkVKteWYHX3Hk" target="_blank" rel="noopener noreferrer" class="btn-glass" style="display: inline-flex; align-items: center; gap: 8px;">
+
+            <div class="spotify-actions-wrapper">
+              <a id="spotify-yt-link" href="https://youtu.be/rMpJ3LEYdOA?si=xqtnkVKteWYHX3Hk" target="_blank" rel="noopener noreferrer" class="btn-glass spotify-action-link" title="Buka video klip lagu aktif di YouTube">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
-                <span>Tonton di YouTube</span>
+                <span id="spotify-yt-text">Tonton di YouTube</span>
               </a>
-              <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="btn-glass" style="display: inline-flex; align-items: center; gap: 8px;" data-i18n="spotify_link">
+              <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="btn-glass spotify-action-link" data-i18n="spotify_link">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #1ed760;">
                   <circle cx="12" cy="12" r="10"></circle>
                   <path d="M8 11.5c3.5-1 6.5-.5 9 1"></path>
@@ -598,13 +599,20 @@
                 <span>Dengarkan di Spotify</span>
               </a>
             </div>
+
+            <!-- Auto-play & Track Status Pill -->
+            <div class="spotify-mode-pill">
+              <span class="mode-pulse-dot"></span>
+              <span id="spotify-mode-text">Auto-Play Playlist Aktif (9 Lagu)</span>
+            </div>
           </div>
 
           <!-- Right Glass Player -->
           <div class="spotify-player-glass">
+            <!-- Top: Album Art & Track Info -->
             <div class="spotify-player-top">
               <div id="spotify-album-art" class="spotify-album-art">
-                <img src="assets/img/tangkap-basah-cover.jpg" alt="VENDETTA RAP - Tangkap Basah (feat. Bringin Home)" class="spotify-cover-img" />
+                <img id="spotify-cover-img" src="assets/img/track-1-cover.jpg" alt="Now Playing Cover" class="spotify-cover-img" />
                 <div class="spotify-eq-overlay" aria-hidden="true">
                   <span class="eq-bar"></span>
                   <span class="eq-bar"></span>
@@ -617,35 +625,85 @@
                   <span id="spotify-status-dot" class="spotify-status-dot"></span>
                   <span id="spotify-status-text">OFFLINE // KLIK PLAY UNTUK MEMUTAR</span>
                 </div>
-                <div class="spotify-track-title">Tangkap Basah (feat. Bringin Home)</div>
-                <div class="spotify-track-artist">VENDETTA RAP • Kupang NTT Hip-Hop</div>
+                <div id="spotify-track-title" class="spotify-track-title">Tangkap Basah</div>
+                <div id="spotify-track-artist" class="spotify-track-artist">VENDETTA RAP (feat. Bringin Home)</div>
+                <div id="spotify-track-genre" class="spotify-genre-tag">NTT Hip-Hop</div>
               </div>
             </div>
 
+            <!-- Scrubber & Time -->
             <div class="spotify-controls-bar">
               <div id="spotify-scrubber" class="spotify-scrubber" title="Klik atau seret untuk mencari durasi">
                 <div id="spotify-scrubber-fill" class="spotify-scrubber-fill"></div>
               </div>
               <div class="spotify-time-row">
                 <span id="spotify-cur-time">00:00</span>
-                <span id="spotify-total-time">03:45</span>
+                <span id="spotify-total-time">03:47</span>
               </div>
             </div>
 
-            <div class="spotify-player-actions">
-              <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--col-cyan); display: flex; align-items: center; gap: 6px;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 18V5l12-2v13"></path>
-                  <circle cx="6" cy="18" r="3"></circle>
-                  <circle cx="18" cy="16" r="3"></circle>
+            <!-- Full Media Player Controls -->
+            <div class="spotify-main-controls">
+              <button id="spotify-shuffle-btn" class="spotify-ctrl-btn" title="Acak Lagu (Shuffle)">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 3 21 3 21 8"></polyline>
+                  <line x1="4" y1="20" x2="21" y2="3"></line>
+                  <polyline points="21 16 21 21 16 21"></polyline>
+                  <line x1="15" y1="15" x2="21" y2="21"></line>
+                  <line x1="4" y1="4" x2="9" y2="9"></line>
                 </svg>
-                NTT HIP-HOP // VIBE CODING
-              </div>
-              <button id="spotify-play-btn" class="spotify-play-btn" aria-label="Play / Pause Audio">
+              </button>
+
+              <button id="spotify-prev-btn" class="spotify-ctrl-btn" title="Lagu Sebelumnya (Previous)">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                  <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5"></line>
+                </svg>
+              </button>
+
+              <button id="spotify-play-btn" class="spotify-play-btn" aria-label="Play / Pause Audio" title="Putar Musik">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
               </button>
+
+              <button id="spotify-next-btn" class="spotify-ctrl-btn" title="Lagu Berikutnya (Next)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                  <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5"></line>
+                </svg>
+              </button>
+
+              <button id="spotify-stop-btn" class="spotify-ctrl-btn" title="Berhenti (Stop)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+                </svg>
+              </button>
+
+              <button id="spotify-repeat-btn" class="spotify-ctrl-btn is-active" title="Mode Putar: Otomatis Lanjut Semua Lagu (Loop All)">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="17 1 21 5 17 9"></polyline>
+                  <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                  <polyline points="7 23 3 19 7 15"></polyline>
+                  <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Playlist Accordion Header & Drawer -->
+            <div class="spotify-playlist-header">
+              <span id="spotify-playlist-count" class="spotify-playlist-title">DAFTAR PUTAR (9 LAGU)</span>
+              <button id="spotify-playlist-toggle" class="spotify-playlist-toggle-btn" aria-expanded="false" title="Buka/Tutup Daftar Putar">
+                <span id="playlist-toggle-label">Lihat Playlist</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Scrollable Playlist Items Container -->
+            <div id="spotify-playlist-drawer" class="spotify-playlist-drawer" role="list">
+              <!-- Dynamically populated by main.js with all 9 tracks -->
             </div>
           </div>
         </div>
