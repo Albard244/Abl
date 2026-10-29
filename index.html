@@ -560,67 +560,86 @@
     </section>
 
     <!-- =================================================================
-         7. SPOTIFY / CODING VIBES SECTION (alfari.my.id marquee feature)
+         7. SPOTIFY / CODING VIBES SECTION (Real Music Player)
          ================================================================= -->
     <section id="spotify" class="spotify-section">
       <div class="container">
+        <!-- Hidden Native Audio Engine for Real Playback -->
+        <audio id="coding-audio-player" preload="metadata" src="assets/audio/vendetta-tangkap-basah.mp3"></audio>
+
         <div class="spotify-card">
           <!-- Left Copy -->
           <div>
             <div class="spotify-eyebrow" data-i18n="spotify_badge">
               <span class="spotify-eyebrow-dot"></span>
-              SPOTIFY • CODING VIBES
+              REAL MUSIC • CODING VIBES
             </div>
             <h2 class="spotify-title" data-i18n="spotify_title">
               A little music. <br />
               <span>A lot of ideas.</span>
             </h2>
             <p class="spotify-desc" data-i18n="spotify_desc">
-              Playlist yang menemani sesi Vibe Coding larut malam, investigasi bugs SIMRS, dan perancangan integrasi API.
+              Lagu pengiring sesi Vibe Coding & perancangan arsitektur sistem: <strong>VENDETTA RAP — Tangkap Basah (feat. Bringin Home)</strong>. Musik nyata penuh energi khas Kupang, NTT.
             </p>
-            <a href="https://open.spotify.com/" target="_blank" class="btn-glass" style="display: inline-flex;" data-i18n="spotify_link">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #1ed760;">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M8 11.5c3.5-1 6.5-.5 9 1"></path>
-                <path d="M7 14c4-1 7.5-.5 10.5 1"></path>
-                <path d="M9 9c3-1 6-.5 8.5 1"></path>
-              </svg>
-              Dengarkan di Spotify
-            </a>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;">
+              <a href="https://youtu.be/rMpJ3LEYdOA?si=xqtnkVKteWYHX3Hk" target="_blank" rel="noopener noreferrer" class="btn-glass" style="display: inline-flex; align-items: center; gap: 8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span>Tonton di YouTube</span>
+              </a>
+              <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="btn-glass" style="display: inline-flex; align-items: center; gap: 8px;" data-i18n="spotify_link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #1ed760;">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M8 11.5c3.5-1 6.5-.5 9 1"></path>
+                  <path d="M7 14c4-1 7.5-.5 10.5 1"></path>
+                  <path d="M9 9c3-1 6-.5 8.5 1"></path>
+                </svg>
+                <span>Dengarkan di Spotify</span>
+              </a>
+            </div>
           </div>
 
           <!-- Right Glass Player -->
           <div class="spotify-player-glass">
             <div class="spotify-player-top">
-              <div class="spotify-album-art">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M9 18V5l12-2v13"></path>
-                  <circle cx="6" cy="18" r="3"></circle>
-                  <circle cx="18" cy="16" r="3"></circle>
-                </svg>
+              <div id="spotify-album-art" class="spotify-album-art">
+                <img src="assets/img/tangkap-basah-cover.jpg" alt="VENDETTA RAP - Tangkap Basah (feat. Bringin Home)" class="spotify-cover-img" />
+                <div class="spotify-eq-overlay" aria-hidden="true">
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                </div>
               </div>
               <div class="spotify-track-info">
                 <div id="spotify-track-status" class="spotify-track-status">
-                  LIVE CODING AUDIO VIBES // ON AIR
+                  <span id="spotify-status-dot" class="spotify-status-dot"></span>
+                  <span id="spotify-status-text">OFFLINE // KLIK PLAY UNTUK MEMUTAR</span>
                 </div>
-                <div class="spotify-track-title">Vibe Coding Midnight Beats</div>
-                <div class="spotify-track-artist">Angel Bard Laklo • Lofi / Chillhop Ambient</div>
+                <div class="spotify-track-title">Tangkap Basah (feat. Bringin Home)</div>
+                <div class="spotify-track-artist">VENDETTA RAP • Kupang NTT Hip-Hop</div>
               </div>
             </div>
 
             <div class="spotify-controls-bar">
-              <div class="spotify-scrubber">
-                <div class="spotify-scrubber-fill"></div>
+              <div id="spotify-scrubber" class="spotify-scrubber" title="Klik atau seret untuk mencari durasi">
+                <div id="spotify-scrubber-fill" class="spotify-scrubber-fill"></div>
               </div>
               <div class="spotify-time-row">
-                <span>01:42</span>
-                <span>03:30</span>
+                <span id="spotify-cur-time">00:00</span>
+                <span id="spotify-total-time">03:45</span>
               </div>
             </div>
 
             <div class="spotify-player-actions">
-              <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--col-cyan);">
-                HEALTHCARE IT VIBES
+              <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--col-cyan); display: flex; align-items: center; gap: 6px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18V5l12-2v13"></path>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+                NTT HIP-HOP // VIBE CODING
               </div>
               <button id="spotify-play-btn" class="spotify-play-btn" aria-label="Play / Pause Audio">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

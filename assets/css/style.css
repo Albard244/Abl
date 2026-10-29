@@ -1459,19 +1459,72 @@ img {
 .spotify-album-art {
   width: 90px;
   height: 90px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #1e1b4b, #2c67ed, #00f0ff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(44, 103, 237, 0.4);
+  border-radius: 14px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.25);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: #090e24;
 }
 
-.spotify-album-art svg {
-  color: #ffffff;
+.spotify-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.spotify-album-art.is-playing .spotify-cover-img {
+  transform: scale(1.06);
+}
+
+.spotify-eq-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 7, 19, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spotify-album-art.is-playing .spotify-eq-overlay {
+  opacity: 1;
+}
+
+.eq-bar {
+  width: 4px;
+  height: 20px;
+  background: #00f0ff;
+  border-radius: 2px;
+  animation: eqBounce 0.8s ease-in-out infinite alternate;
+}
+
+.eq-bar:nth-child(2) {
+  height: 28px;
+  background: #38bdf8;
+  animation-delay: 0.2s;
+}
+
+.eq-bar:nth-child(3) {
+  height: 16px;
+  background: #ec4899;
+  animation-delay: 0.4s;
+}
+
+.eq-bar:nth-child(4) {
+  height: 24px;
+  background: #10b981;
+  animation-delay: 0.15s;
+}
+
+@keyframes eqBounce {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
 }
 
 .spotify-track-info {
@@ -1489,6 +1542,26 @@ img {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.spotify-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.spotify-status-dot.is-active {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDot 1.4s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 .spotify-track-title {
@@ -1513,19 +1586,26 @@ img {
 
 .spotify-scrubber {
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 6px;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 99px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
+  transition: height 0.15s ease;
+}
+
+.spotify-scrubber:hover {
+  height: 8px;
 }
 
 .spotify-scrubber-fill {
-  width: 45%;
+  width: 0%;
   height: 100%;
   background: linear-gradient(90deg, #2c67ed, #00f0ff);
   border-radius: 99px;
-  box-shadow: 0 0 10px var(--col-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+  transition: width 0.1s linear;
 }
 
 .spotify-time-row {

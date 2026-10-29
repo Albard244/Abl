@@ -303,53 +303,105 @@ function initBorderGlow() {
 }
 
 /* -------------------------------------------------------------------
-   7. SPOTIFY / CODING VIBES AUDIO PLAYER (alfari.my.id marquee section)
+   7. REAL MUSIC / CODING VIBES AUDIO PLAYER
+   Song: VENDETTA RAP — Tangkap Basah (feat. Bringin Home)
    ------------------------------------------------------------------- */
 function initSpotifyPlayer() {
   const playBtn = document.getElementById('spotify-play-btn');
   const audioNavBtn = document.getElementById('navbar-audio-btn');
-  const trackStatus = document.getElementById('spotify-track-status');
-  let isPlaying = false;
-  let audioContext = null;
-  let osc = null;
+  const audio = document.getElementById('coding-audio-player');
+  const statusDot = document.getElementById('spotify-status-dot');
+  const statusText = document.getElementById('spotify-status-text');
+  const albumArt = document.getElementById('spotify-album-art');
+  const scrubber = document.getElementById('spotify-scrubber');
+  const scrubberFill = document.getElementById('spotify-scrubber-fill');
+  const curTimeEl = document.getElementById('spotify-cur-time');
+  const totalTimeEl = document.getElementById('spotify-total-time');
+
+  if (!audio) return;
+
+  function formatTime(seconds) {
+    if (isNaN(seconds) || seconds < 0) return '00:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+
+  function updatePlayState(isPlaying) {
+    if (isPlaying) {
+      if (playBtn) {
+        playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+        playBtn.setAttribute('title', 'Jeda Musik');
+      }
+      if (audioNavBtn) {
+        audioNavBtn.classList.add('is-playing');
+        audioNavBtn.setAttribute('title', 'Musik Sedang Diputar: Tangkap Basah (Klik untuk Jeda)');
+      }
+      if (albumArt) albumArt.classList.add('is-playing');
+      if (statusDot) statusDot.classList.add('is-active');
+      if (statusText) statusText.textContent = 'NOW PLAYING • REAL AUDIO // VIBE CODING';
+    } else {
+      if (playBtn) {
+        playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+        playBtn.setAttribute('title', 'Putar Musik Nyata');
+      }
+      if (audioNavBtn) {
+        audioNavBtn.classList.remove('is-playing');
+        audioNavBtn.setAttribute('title', 'Putar Musik Pengiring Vibe Coding');
+      }
+      if (albumArt) albumArt.classList.remove('is-playing');
+      if (statusDot) statusDot.classList.remove('is-active');
+      if (statusText) statusText.textContent = 'PAUSED // KLIK PLAY UNTUK MEMUTAR';
+    }
+  }
 
   function toggleAudio() {
-    isPlaying = !isPlaying;
-
-    if (isPlaying) {
-      if (playBtn) playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
-      if (audioNavBtn) audioNavBtn.classList.add('is-playing');
-      if (trackStatus) trackStatus.textContent = 'LIVE CODING AUDIO VIBES // ON AIR';
-
-      // Soft ambient synth chord simulation
-      try {
-        if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioContext.state === 'suspended') audioContext.resume();
-
-        // Play gentle chime
-        const note = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        note.type = 'sine';
-        note.frequency.setValueAtTime(440, audioContext.currentTime); // A4
-        note.frequency.exponentialRampToValueAtTime(659.25, audioContext.currentTime + 0.4); // E5
-        gain.gain.setValueAtTime(0.08, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1.2);
-        note.connect(gain);
-        gain.connect(audioContext.destination);
-        note.start();
-        note.stop(audioContext.currentTime + 1.2);
-      } catch (e) {
-        console.log('Audio init notice:', e);
-      }
+    if (audio.paused) {
+      audio.play().then(() => {
+        updatePlayState(true);
+      }).catch(err => {
+        console.warn('Playback error / user gesture needed:', err);
+      });
     } else {
-      if (playBtn) playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
-      if (audioNavBtn) audioNavBtn.classList.remove('is-playing');
-      if (trackStatus) trackStatus.textContent = 'PLAYLIST PAUSED // CLICK TO VIBE';
+      audio.pause();
+      updatePlayState(false);
     }
   }
 
   if (playBtn) playBtn.addEventListener('click', toggleAudio);
   if (audioNavBtn) audioNavBtn.addEventListener('click', toggleAudio);
+
+  // Time & Progress update
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    const progress = (audio.currentTime / audio.duration) * 100;
+    if (scrubberFill) scrubberFill.style.width = `${progress}%`;
+    if (curTimeEl) curTimeEl.textContent = formatTime(audio.currentTime);
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    if (totalTimeEl && audio.duration) {
+      totalTimeEl.textContent = formatTime(audio.duration);
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    audio.currentTime = 0;
+    audio.play().catch(() => updatePlayState(false));
+  });
+
+  // Interactive scrubber seek
+  if (scrubber) {
+    scrubber.addEventListener('click', (e) => {
+      const rect = scrubber.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const pct = Math.max(0, Math.min(1, clickX / width));
+      if (audio.duration) {
+        audio.currentTime = pct * audio.duration;
+      }
+    });
+  }
 }
 
 /* -------------------------------------------------------------------
@@ -503,9 +555,9 @@ const translations = {
     about_story_p2: 'Didukung latar belakang di bidang Sistem Informasi Rumah Sakit (SIMRS) dan investigasi bugs kritis, saya memadukan intuisi teknis di lapangan dengan kecerdasan AI untuk menghasilkan sistem yang tidak hanya cepat dibuat, tapi juga stabil, aman, dan mudah dirawat.',
     about_story_p3: 'Dari antarmuka web interaktif (React), aplikasi mobile praktis (Flutter), hingga backend andal (Laravel & PHP Native), vibe coding memungkinkan saya menghadirkan solusi fungsional 10x lebih efisien.',
 
-    spotify_badge: 'SPOTIFY • CODING VIBES',
+    spotify_badge: 'REAL MUSIC • CODING VIBES',
     spotify_title: 'A little music. <br><span>A lot of ideas.</span>',
-    spotify_desc: 'Playlist yang menemani sesi Vibe Coding larut malam, investigasi bugs SIMRS, dan perancangan integrasi API.',
+    spotify_desc: 'Lagu pengiring sesi Vibe Coding & perancangan arsitektur sistem: <strong>VENDETTA RAP — Tangkap Basah (feat. Bringin Home)</strong>. Musik nyata penuh energi khas Kupang, NTT.',
     spotify_link: 'Dengarkan di Spotify',
 
     port_badge: 'KARYA & KOMPETENSI',
@@ -563,9 +615,9 @@ const translations = {
     about_story_p2: 'Backed by experience in Hospital Information Systems (HIS/SIMRS) and critical bug hunting, I combine practical domain intuition with AI acceleration to build systems that are not only delivered fast, but also stable, secure, and maintainable.',
     about_story_p3: 'From interactive web interfaces (React), responsive mobile apps (Flutter), to robust backends (Laravel & PHP Native), vibe coding empowers me to ship functional solutions 10x more efficiently.',
 
-    spotify_badge: 'SPOTIFY • CODING VIBES',
+    spotify_badge: 'REAL MUSIC • CODING VIBES',
     spotify_title: 'A little music. <br><span>A lot of ideas.</span>',
-    spotify_desc: 'The playlist that powers late-night Vibe Coding sessions, SIMRS bug forensics, and API bridging designs.',
+    spotify_desc: 'Soundtrack powering late-night Vibe Coding & system architecture sessions: <strong>VENDETTA RAP — Tangkap Basah (feat. Bringin Home)</strong>. Authentic Kupang, NTT hip-hop energy.',
     spotify_link: 'Listen on Spotify',
 
     port_badge: 'CREATIVE WORKS & SKILLS',
