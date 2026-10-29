@@ -209,18 +209,31 @@ function initNavbar() {
 
   // Mobile Drawer Toggle
   const toggleBtn = document.getElementById('navbar-mobile-toggle');
+  const closeBtn = document.getElementById('navbar-mobile-close');
   const drawer = document.getElementById('navbar-mobile-drawer');
-  const mobileLinks = document.querySelectorAll('.navbar-mobile-link');
 
-  if (toggleBtn && drawer) {
-    toggleBtn.addEventListener('click', () => {
-      drawer.classList.toggle('is-open');
-    });
+  if (drawer) {
+    const closeDrawer = () => {
+      drawer.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
 
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        drawer.classList.remove('is-open');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const isOpen = drawer.classList.toggle('is-open');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
       });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeDrawer);
+    }
+
+    // Close on clicking any link or action button inside drawer
+    drawer.querySelectorAll('a, button').forEach(item => {
+      if (item !== closeBtn) {
+        item.addEventListener('click', closeDrawer);
+      }
     });
   }
 }

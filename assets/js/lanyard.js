@@ -22,7 +22,8 @@
     container.innerHTML = '';
     container.style.position = 'relative';
     container.style.width = '100%';
-    container.style.height = '600px';
+    const isMobileInitial = window.innerWidth < 768;
+    container.style.height = isMobileInitial ? '480px' : '600px';
     container.style.overflow = 'visible';
 
     // Canvas Element
@@ -34,7 +35,7 @@
     canvas.style.display = 'block';
     canvas.style.cursor = 'grab';
     canvas.style.outline = 'none';
-    canvas.style.touchAction = 'none';
+    canvas.style.touchAction = 'pan-y'; // Receptive to vertical scroll unless dragging card
     canvas.style.userSelect = 'none';
     container.appendChild(canvas);
 
@@ -42,36 +43,39 @@
     const hintPill = document.createElement('div');
     hintPill.className = 'lanyard-interaction-hint';
     hintPill.style.position = 'absolute';
-    hintPill.style.bottom = '14px';
+    hintPill.style.bottom = isMobileInitial ? '8px' : '14px';
     hintPill.style.left = '50%';
     hintPill.style.transform = 'translateX(-50%)';
     hintPill.style.background = 'rgba(5, 7, 19, 0.8)';
     hintPill.style.border = '1px solid rgba(0, 240, 255, 0.35)';
     hintPill.style.borderRadius = '20px';
-    hintPill.style.padding = '6px 14px';
-    hintPill.style.fontSize = '12px';
+    hintPill.style.padding = isMobileInitial ? '5px 12px' : '6px 14px';
+    hintPill.style.fontSize = isMobileInitial ? '11px' : '12px';
     hintPill.style.color = '#94a3b8';
     hintPill.style.pointerEvents = 'none';
     hintPill.style.backdropFilter = 'blur(8px)';
     hintPill.style.display = 'flex';
     hintPill.style.alignItems = 'center';
     hintPill.style.gap = '6px';
+    hintPill.style.whiteSpace = 'nowrap';
     hintPill.style.zIndex = '5';
     hintPill.innerHTML = `
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2">
         <path d="M15 15l5-5-5-5"></path><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
       </svg>
-      <span>Tarik ID Card • Double-click untuk membalik</span>
+      <span>${isMobileInitial ? 'Tarik Kartu • Double-tap balik' : 'Tarik ID Card • Double-click untuk membalik'}</span>
     `;
     container.appendChild(hintPill);
 
     // 1. Scene, Camera, Renderer
-    const width = container.clientWidth || 400;
-    const height = container.clientHeight || 600;
+    const width = container.clientWidth || (isMobileInitial ? window.innerWidth : 400);
+    const height = container.clientHeight || (isMobileInitial ? 480 : 600);
+    const aspect = width / height;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 50);
-    camera.position.set(0, 0, 4.3);
+    const camera = new THREE.PerspectiveCamera(40, aspect, 0.1, 50);
+    const initZ = aspect < 0.82 ? 4.3 * (0.82 / aspect) : 4.3;
+    camera.position.set(0, 0, Math.min(initZ, 5.5));
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
@@ -514,6 +518,7 @@
       const hits = raycaster.intersectObjects([hitboxMesh, cardMesh, clipMesh, ringMesh], true);
       if (hits.length > 0) {
         isDragging = true;
+        canvas.style.touchAction = 'none'; // Lock touch during drag
         canvas.style.cursor = 'grabbing';
 
         const hitPoint = hits[0].point;
@@ -561,6 +566,7 @@
     function onPointerUp(e) {
       if (isDragging) {
         isDragging = false;
+        canvas.style.touchAction = 'pan-y'; // Re-enable normal page scroll
         canvas.style.cursor = 'grab';
 
         const endNode = nodes[nodeCount - 1];
@@ -727,9 +733,14 @@
 
     // Resize Handler
     function handleResize() {
-      const w = container.clientWidth || 400;
-      const h = container.clientHeight || 600;
-      camera.aspect = w / h;
+      const isMob = window.innerWidth < 768;
+      container.style.height = isMob ? '480px' : '600px';
+      const w = container.clientWidth || (isMob ? window.innerWidth : 400);
+      const h = container.clientHeight || (isMob ? 480 : 600);
+      const asp = w / h;
+      camera.aspect = asp;
+      const targetZ = asp < 0.82 ? 4.3 * (0.82 / asp) : 4.3;
+      camera.position.z = Math.min(targetZ, 5.5);
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     }
