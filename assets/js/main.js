@@ -46,53 +46,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* -------------------------------------------------------------------
-   1. WELCOME SCREEN PRELOADER (alfari.my.id)
+   1. WELCOME SCREEN PRELOADER (Instant Ultra-Fast Transition)
    ------------------------------------------------------------------- */
 function initPreloader() {
   const preloader = document.getElementById('welcome-preloader');
   const countEl = document.getElementById('welcome-loader-count');
   const progressFill = document.getElementById('welcome-progress-fill');
-  const statusEl = document.getElementById('welcome-loader-status');
+  if (!preloader) return;
 
-  if (!preloader || !countEl || !progressFill) return;
+  function dismiss() {
+    if (countEl) countEl.textContent = '100';
+    if (progressFill) progressFill.style.transform = 'scaleX(1)';
+    setTimeout(() => {
+      preloader.classList.add('is-leaving');
+      setTimeout(() => { preloader.style.display = 'none'; }, 280);
+    }, 60);
+  }
 
-  const statuses = [
-    'INITIALIZING CORE KERNEL...',
-    'SYNCING HEALTHCARE DATA STACKS...',
-    'CONFIGURING 3D LANYARD BADGE...',
-    'VIBE CODING WORKFLOWS READY'
-  ];
-
-  let current = 0;
-  const interval = setInterval(() => {
-    current += Math.floor(Math.random() * 8) + 4;
-    if (current > 100) current = 100;
-
-    countEl.textContent = current;
-    progressFill.style.transform = `scaleX(${current / 100})`;
-
-    const statusIndex = Math.min(Math.floor((current / 100) * statuses.length), statuses.length - 1);
-    if (statusEl) statusEl.textContent = statuses[statusIndex];
-
-    if (current >= 100) {
-      clearInterval(interval);
-      setTimeout(() => {
-        preloader.classList.add('is-leaving');
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 750);
-      }, 250);
-    }
-  }, 45);
+  if (document.readyState === 'complete') {
+    dismiss();
+  } else {
+    window.addEventListener('load', dismiss);
+    setTimeout(dismiss, 350); // Fallback: never block user for more than 350ms
+  }
 }
 
 /* -------------------------------------------------------------------
-   2. COSMIC STARFIELD CANVAS
+   2. COSMIC STARFIELD CANVAS (Hardware-Accelerated 30fps Quad Blit)
    ------------------------------------------------------------------- */
 function initStarfield() {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: true });
 
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
@@ -100,42 +85,52 @@ function initStarfield() {
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
-  });
+  }, { passive: true });
 
-  const starCount = Math.floor((width * height) / 8000);
+  const starCount = 55;
   const stars = [];
 
   for (let i = 0; i < starCount; i++) {
     stars.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.6 + 0.3,
-      alpha: Math.random() * 0.8 + 0.2,
-      speed: Math.random() * 0.02 + 0.005,
+      size: Math.random() * 1.5 + 0.6,
+      alpha: Math.random() * 0.7 + 0.2,
+      speed: Math.random() * 0.012 + 0.004,
       direction: Math.random() > 0.5 ? 1 : -1
     });
   }
 
-  function renderStars() {
+  let lastTime = 0;
+  function renderStars(time) {
+    if (document.hidden) {
+      requestAnimationFrame(renderStars);
+      return;
+    }
+    // Throttle to 30fps for ultra-low battery & CPU usage
+    if (time - lastTime < 33) {
+      requestAnimationFrame(renderStars);
+      return;
+    }
+    lastTime = time;
+
     ctx.clearRect(0, 0, width, height);
 
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
       s.alpha += s.speed * s.direction;
-      if (s.alpha > 0.95 || s.alpha < 0.15) {
+      if (s.alpha > 0.9 || s.alpha < 0.15) {
         s.direction *= -1;
       }
 
-      ctx.fillStyle = `rgba(240, 240, 255, ${s.alpha})`;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.fillStyle = `rgba(220, 235, 255, ${s.alpha})`;
+      ctx.fillRect(s.x, s.y, s.size, s.size);
     }
 
     requestAnimationFrame(renderStars);
   }
 
-  renderStars();
+  requestAnimationFrame(renderStars);
 }
 
 /* -------------------------------------------------------------------
@@ -200,7 +195,16 @@ function initNavbar() {
     }
   }
 
-  window.addEventListener('scroll', updateActiveLink);
+  let isScrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!isScrollTicking) {
+      isScrollTicking = true;
+      requestAnimationFrame(() => {
+        updateActiveLink();
+        isScrollTicking = false;
+      });
+    }
+  }, { passive: true });
   setTimeout(updateActiveLink, 200);
 
   // Mobile Drawer Toggle
@@ -222,67 +226,10 @@ function initNavbar() {
 }
 
 /* -------------------------------------------------------------------
-   5. 3D INTERACTIVE LANYARD ID BADGE (alfari.my.id marquee feature)
+   5. 3D LANYARD BADGE (Managed by lanyard.js engine)
    ------------------------------------------------------------------- */
 function initLanyard3D() {
-  const card = document.getElementById('lanyard-badge-card');
-  const container = document.getElementById('lanyard-card-container');
-  const sheen = document.getElementById('lanyard-sheen');
-
-  if (!card || !container) return;
-
-  let isHovered = false;
-  let currentRotateX = 0;
-  let currentRotateY = 0;
-  let targetRotateX = 0;
-  let targetRotateY = 0;
-
-  container.addEventListener('mouseenter', () => {
-    isHovered = true;
-  });
-
-  container.addEventListener('mouseleave', () => {
-    isHovered = false;
-    targetRotateX = 0;
-    targetRotateY = 0;
-  });
-
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-
-    // Calculate 3D tilt angles (max ~18 degrees)
-    targetRotateX = -(y / (rect.height / 2)) * 18;
-    targetRotateY = (x / (rect.width / 2)) * 18;
-
-    // Holographic sheen position
-    if (sheen) {
-      const sheenX = ((e.clientX - rect.left) / rect.width) * 100;
-      const sheenY = ((e.clientY - rect.top) / rect.height) * 100;
-      sheen.style.background = `radial-gradient(circle at ${sheenX}% ${sheenY}%, rgba(0,240,255,0.3) 0%, rgba(236,72,153,0.2) 35%, rgba(44,103,237,0.2) 65%, transparent 85%)`;
-    }
-  });
-
-  // Smooth Physics RAF loop
-  let idleTime = 0;
-  function updateCardPhysics() {
-    if (!isHovered) {
-      idleTime += 0.02;
-      // Gentle natural breeze swinging
-      targetRotateY = Math.sin(idleTime) * 3.5;
-      targetRotateX = Math.cos(idleTime * 0.7) * 2.5;
-    }
-
-    currentRotateX += (targetRotateX - currentRotateX) * 0.12;
-    currentRotateY += (targetRotateY - currentRotateY) * 0.12;
-
-    card.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg) scale3d(1, 1, 1)`;
-
-    requestAnimationFrame(updateCardPhysics);
-  }
-
-  updateCardPhysics();
+  // 3D badge is driven autonomously by high-performance lanyard.js
 }
 
 /* -------------------------------------------------------------------
@@ -337,6 +284,7 @@ function initSpotifyPlayer() {
   const playlistDrawer = document.getElementById('spotify-playlist-drawer');
 
   if (!audio) return;
+  audio.preload = 'none'; // High-Performance: Never pre-buffer 5MB audio on page load!
 
   const PLAYLIST = [
     {
@@ -518,9 +466,6 @@ function initSpotifyPlayer() {
     currentIndex = index;
     const track = PLAYLIST[currentIndex];
 
-    audio.src = track.audio;
-    audio.load();
-
     if (coverImg) coverImg.src = track.cover;
     if (trackTitle) trackTitle.textContent = track.title;
     if (trackArtist) trackArtist.textContent = track.artist;
@@ -533,6 +478,7 @@ function initSpotifyPlayer() {
     highlightPlaylistItem();
 
     if (autoPlay) {
+      audio.src = track.audio;
       audio.play().then(() => {
         updatePlayState(true);
       }).catch(err => {
@@ -545,6 +491,9 @@ function initSpotifyPlayer() {
   }
 
   function togglePlay() {
+    if (!audio.src || audio.src === '' || audio.src.endsWith(window.location.pathname) || audio.src.endsWith('/')) {
+      audio.src = PLAYLIST[currentIndex].audio;
+    }
     if (audio.paused) {
       audio.play().then(() => {
         updatePlayState(true);
