@@ -23,7 +23,7 @@
     container.style.position = 'relative';
     container.style.width = '100%';
     const isMobileInitial = window.innerWidth < 768;
-    container.style.height = isMobileInitial ? '480px' : '600px';
+    container.style.height = isMobileInitial ? '420px' : '600px';
     container.style.overflow = 'visible';
 
     // Canvas Element
@@ -35,7 +35,7 @@
     canvas.style.display = 'block';
     canvas.style.cursor = 'grab';
     canvas.style.outline = 'none';
-    canvas.style.touchAction = 'pan-y'; // Receptive to vertical scroll unless dragging card
+    canvas.style.touchAction = 'pan-y'; // Receptive to vertical scroll on mobile
     canvas.style.userSelect = 'none';
     container.appendChild(canvas);
 
@@ -43,13 +43,13 @@
     const hintPill = document.createElement('div');
     hintPill.className = 'lanyard-interaction-hint';
     hintPill.style.position = 'absolute';
-    hintPill.style.bottom = isMobileInitial ? '8px' : '14px';
+    hintPill.style.bottom = isMobileInitial ? '6px' : '14px';
     hintPill.style.left = '50%';
     hintPill.style.transform = 'translateX(-50%)';
     hintPill.style.background = 'rgba(5, 7, 19, 0.8)';
     hintPill.style.border = '1px solid rgba(0, 240, 255, 0.35)';
     hintPill.style.borderRadius = '20px';
-    hintPill.style.padding = isMobileInitial ? '5px 12px' : '6px 14px';
+    hintPill.style.padding = isMobileInitial ? '4px 10px' : '6px 14px';
     hintPill.style.fontSize = isMobileInitial ? '11px' : '12px';
     hintPill.style.color = '#94a3b8';
     hintPill.style.pointerEvents = 'none';
@@ -69,13 +69,13 @@
 
     // 1. Scene, Camera, Renderer
     const width = container.clientWidth || (isMobileInitial ? window.innerWidth : 400);
-    const height = container.clientHeight || (isMobileInitial ? 480 : 600);
+    const height = container.clientHeight || (isMobileInitial ? 420 : 600);
     const aspect = width / height;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(40, aspect, 0.1, 50);
-    const initZ = aspect < 0.82 ? 4.3 * (0.82 / aspect) : 4.3;
-    camera.position.set(0, 0, Math.min(initZ, 5.5));
+    const initZ = aspect < 0.85 ? 4.3 * (0.85 / aspect) : 4.3;
+    camera.position.set(0, -0.05, Math.min(initZ, 5.2));
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
@@ -511,34 +511,108 @@
       mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
     }
 
-    function onPointerDown(e) {
+    // DUAL INTERACTION MODEL (Optimized for iPhone / iOS Safari & Desktop)
+    let isTouchActive = false;
+
+    // 1. Touch Events (iPhone / iPad / Mobile WebKit)
+    function onTouchStart(e) {
+      if (e.touches.length !== 1) return;
+      const t = e.touches[0];
+      updateMouseCoords(t.clientX, t.clientY);
+      raycaster.setFromCamera(mouse, camera);
+
+      const hits = raycaster.intersectObjects([hitboxMesh, cardMesh, clipMesh, ringMesh], true);
+      if (hits.length > 0) {
+        // User touched the 3D card!
+        isDragging = true;
+        isTouchActive = true;
+        e.preventDefault(); // Stop native page scroll ONLY while user is holding the card!
+
+        const hitPoint = hits[0].point;
+        dragPlane.constant = -hitPoint.z;
+        raycaster.ray.intersectPlane(dragPlane, planeIntersect);
+        grabOffset.copy(nodes[nodeCount - 1]).sub(planeIntersect);
+
+        lastDragX = t.clientX;
+        lastDragTime = performance.now();
+        prevMousePos.copy(planeIntersect);
+        dragVelocity.set(0, 0, 0);
+      } else {
+        // User touched outside the card -> allow native iOS Safari scroll with full momentum!
+        isDragging = false;
+        isTouchActive = false;
+      }
+    }
+
+    function onTouchMove(e) {
+      if (!isDragging || e.touches.length !== 1) return;
+      e.preventDefault(); // Prevent page scroll while dragging the card
+
+      const t = e.touches[0];
+      updateMouseCoords(t.clientX, t.clientY);
+      raycaster.setFromCamera(mouse, camera);
+
+      if (raycaster.ray.intersectPlane(dragPlane, planeIntersect)) {
+        const now = performance.now();
+        const dt = Math.max((now - lastDragTime) / 1000, 0.001);
+
+        dragVelocity.copy(planeIntersect).sub(prevMousePos).divideScalar(dt);
+        prevMousePos.copy(planeIntersect);
+
+        const dx = t.clientX - lastDragX;
+        rotVelY += -dx * 0.015;
+        lastDragX = t.clientX;
+        lastDragTime = now;
+      }
+    }
+
+    function onTouchEnd() {
+      if (isDragging) {
+        isDragging = false;
+        isTouchActive = false;
+        const endNode = nodes[nodeCount - 1];
+        const velImpulse = dragVelocity.clone().clampLength(0, 2.5).multiplyScalar(0.016);
+        endNode.add(velImpulse);
+      }
+
+      // Double-tap flip detection on iPhone
+      const now = performance.now();
+      if (now - lastTap < 350 && now - lastTap > 0) {
+        rotVelY += Math.PI * 4;
+      }
+      lastTap = now;
+    }
+
+    canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', () => { isDragging = false; isTouchActive = false; }, { passive: true });
+
+    // 2. Mouse Events (Desktop & Laptop)
+    function onMouseDown(e) {
+      if (isTouchActive) return;
       updateMouseCoords(e.clientX, e.clientY);
       raycaster.setFromCamera(mouse, camera);
 
       const hits = raycaster.intersectObjects([hitboxMesh, cardMesh, clipMesh, ringMesh], true);
       if (hits.length > 0) {
         isDragging = true;
-        canvas.style.touchAction = 'none'; // Lock touch during drag
         canvas.style.cursor = 'grabbing';
 
         const hitPoint = hits[0].point;
         dragPlane.constant = -hitPoint.z;
         raycaster.ray.intersectPlane(dragPlane, planeIntersect);
-
         grabOffset.copy(nodes[nodeCount - 1]).sub(planeIntersect);
 
         lastDragX = e.clientX;
         lastDragTime = performance.now();
         prevMousePos.copy(planeIntersect);
         dragVelocity.set(0, 0, 0);
-
-        if (canvas.setPointerCapture && e.pointerId !== undefined) {
-          try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
-        }
       }
     }
 
-    function onPointerMove(e) {
+    function onMouseMove(e) {
+      if (isTouchActive) return;
       if (!isDragging) {
         updateMouseCoords(e.clientX, e.clientY);
         raycaster.setFromCamera(mouse, camera);
@@ -563,41 +637,21 @@
       }
     }
 
-    function onPointerUp(e) {
-      if (isDragging) {
+    function onMouseUp() {
+      if (isDragging && !isTouchActive) {
         isDragging = false;
-        canvas.style.touchAction = 'pan-y'; // Re-enable normal page scroll
         canvas.style.cursor = 'grab';
-
         const endNode = nodes[nodeCount - 1];
         const velImpulse = dragVelocity.clone().clampLength(0, 2.5).multiplyScalar(0.016);
         endNode.add(velImpulse);
-
-        if (canvas.releasePointerCapture && e.pointerId !== undefined) {
-          try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
-        }
       }
     }
 
-    canvas.addEventListener('pointerdown', onPointerDown);
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-    window.addEventListener('pointerup', onPointerUp);
-    window.addEventListener('pointercancel', onPointerUp);
+    canvas.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mouseup', onMouseUp);
+    canvas.addEventListener('dblclick', () => { rotVelY += Math.PI * 4; });
     window.addEventListener('blur', () => { isDragging = false; });
-
-    // Double-click to flip card
-    canvas.addEventListener('dblclick', () => {
-      rotVelY += Math.PI * 4;
-    });
-
-    // Tap detection for double-tap flip
-    canvas.addEventListener('pointerup', () => {
-      const now = performance.now();
-      if (now - lastTap < 350 && now - lastTap > 0) {
-        rotVelY += Math.PI * 4;
-      }
-      lastTap = now;
-    });
 
     // 8. HIGH-PERFORMANCE PHYSICS & RENDER LOOP
     let clock = new THREE.Clock();
@@ -734,13 +788,13 @@
     // Resize Handler
     function handleResize() {
       const isMob = window.innerWidth < 768;
-      container.style.height = isMob ? '480px' : '600px';
+      container.style.height = isMob ? '420px' : '600px';
       const w = container.clientWidth || (isMob ? window.innerWidth : 400);
-      const h = container.clientHeight || (isMob ? 480 : 600);
+      const h = container.clientHeight || (isMob ? 420 : 600);
       const asp = w / h;
       camera.aspect = asp;
-      const targetZ = asp < 0.82 ? 4.3 * (0.82 / asp) : 4.3;
-      camera.position.z = Math.min(targetZ, 5.5);
+      const targetZ = asp < 0.85 ? 4.3 * (0.85 / asp) : 4.3;
+      camera.position.z = Math.min(targetZ, 5.2);
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     }

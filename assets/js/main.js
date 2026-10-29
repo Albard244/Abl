@@ -81,10 +81,15 @@ function initStarfield() {
 
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
+  let lastW = window.innerWidth;
 
   window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    // Only reallocate canvas when viewport width changes (e.g. orientation change),
+    // preventing stutters on iOS Safari when the bottom navigation bar collapses on scroll.
+    if (Math.abs(window.innerWidth - lastW) > 8) {
+      lastW = width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
   }, { passive: true });
 
   const starCount = 55;
@@ -216,12 +221,14 @@ function initNavbar() {
     const closeDrawer = () => {
       drawer.classList.remove('is-open');
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
 
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
         const isOpen = drawer.classList.toggle('is-open');
         document.body.style.overflow = isOpen ? 'hidden' : '';
+        document.documentElement.style.overflow = isOpen ? 'hidden' : '';
       });
     }
 
