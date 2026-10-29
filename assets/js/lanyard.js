@@ -1,6 +1,6 @@
 /* ===================================================================
    3D REALISTIC INTERACTIVE LANYARD ENGINE (Three.js + Verlet Physics)
-   High-Performance Optimized: Zero-GC when idle, IntersectionObserver
+   Ultra-Reliable & High Performance: Clamped Reach, Zero-NaN Safety
    Created for Angel Bard Laklo, S.Kom — Vibe Coder & HealthTech Innovator
    =================================================================== */
 
@@ -22,7 +22,7 @@
     container.innerHTML = '';
     container.style.position = 'relative';
     container.style.width = '100%';
-    if (!container.clientHeight) container.style.height = '600px';
+    container.style.height = '600px';
     container.style.overflow = 'visible';
 
     // Canvas Element
@@ -42,30 +42,30 @@
     const hintPill = document.createElement('div');
     hintPill.className = 'lanyard-interaction-hint';
     hintPill.style.position = 'absolute';
-    hintPill.style.bottom = '12px';
+    hintPill.style.bottom = '14px';
     hintPill.style.left = '50%';
     hintPill.style.transform = 'translateX(-50%)';
-    hintPill.style.background = 'rgba(5, 7, 19, 0.75)';
-    hintPill.style.border = '1px solid rgba(0, 240, 255, 0.3)';
+    hintPill.style.background = 'rgba(5, 7, 19, 0.8)';
+    hintPill.style.border = '1px solid rgba(0, 240, 255, 0.35)';
     hintPill.style.borderRadius = '20px';
-    hintPill.style.padding = '5px 12px';
-    hintPill.style.fontSize = '11px';
+    hintPill.style.padding = '6px 14px';
+    hintPill.style.fontSize = '12px';
     hintPill.style.color = '#94a3b8';
     hintPill.style.pointerEvents = 'none';
-    hintPill.style.backdropFilter = 'blur(6px)';
+    hintPill.style.backdropFilter = 'blur(8px)';
     hintPill.style.display = 'flex';
     hintPill.style.alignItems = 'center';
     hintPill.style.gap = '6px';
     hintPill.style.zIndex = '5';
     hintPill.innerHTML = `
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2">
         <path d="M15 15l5-5-5-5"></path><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
       </svg>
       <span>Tarik ID Card • Double-click untuk membalik</span>
     `;
     container.appendChild(hintPill);
 
-    // 1. Scene, Camera, Renderer (Optimized PixelRatio & Power)
+    // 1. Scene, Camera, Renderer
     const width = container.clientWidth || 400;
     const height = container.clientHeight || 600;
 
@@ -76,26 +76,25 @@
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
       alpha: true,
-      antialias: window.devicePixelRatio < 2, // Only antialias on standard screens for perf
+      antialias: true,
       powerPreference: 'high-performance'
     });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
-    // No shadow map needed: saves 2 extra GPU passes every frame!
 
-    // 2. Lighting Setup (Bright & Crisp Cyberpunk)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.05);
+    // 2. Lighting Setup
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
     scene.add(ambientLight);
 
-    const dirLight1 = new THREE.DirectionalLight(0x00f0ff, 1.3);
+    const dirLight1 = new THREE.DirectionalLight(0x00f0ff, 1.4);
     dirLight1.position.set(3, 4, 3);
     scene.add(dirLight1);
 
-    const dirLight2 = new THREE.DirectionalLight(0x3b82f6, 1.0);
+    const dirLight2 = new THREE.DirectionalLight(0x3b82f6, 1.1);
     dirLight2.position.set(-3, -2, 2.5);
     scene.add(dirLight2);
 
-    // 3. Card Front Texture Canvas (512 x 768: 75% less VRAM than 1024x1536)
+    // 3. Card Front Texture Canvas (512 x 768)
     const cardCanvas = document.createElement('canvas');
     cardCanvas.width = 512;
     cardCanvas.height = 768;
@@ -126,12 +125,12 @@
 
       // Outer Neon Cyan Border
       ctx.strokeStyle = '#00f0ff';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 5;
       ctx.strokeRect(16, 16, 480, 736);
 
       // Inner Accent Border
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1.5;
       ctx.strokeRect(24, 24, 464, 720);
 
       // Top Lanyard Slot Graphic
@@ -276,10 +275,9 @@
       if (cardTexture) cardTexture.needsUpdate = true;
     }
 
-    profileImg.onload = drawCardTexture;
-
     const cardTexture = new THREE.CanvasTexture(cardCanvas);
     cardTexture.anisotropy = 4;
+    profileImg.onload = drawCardTexture;
     drawCardTexture();
 
     // 4. Card Back Texture Canvas (512 x 768)
@@ -288,71 +286,76 @@
     backCanvas.height = 768;
     const bCtx = backCanvas.getContext('2d');
 
-    const bGrad = bCtx.createLinearGradient(0, 0, 512, 768);
-    bGrad.addColorStop(0, '#040714');
-    bGrad.addColorStop(0.5, '#0a102b');
-    bGrad.addColorStop(1, '#050713');
-    bCtx.fillStyle = bGrad;
-    bCtx.fillRect(0, 0, 512, 768);
+    function drawBackTexture() {
+      const bGrad = bCtx.createLinearGradient(0, 0, 512, 768);
+      bGrad.addColorStop(0, '#040714');
+      bGrad.addColorStop(0.5, '#0a102b');
+      bGrad.addColorStop(1, '#050713');
+      bCtx.fillStyle = bGrad;
+      bCtx.fillRect(0, 0, 512, 768);
 
-    bCtx.strokeStyle = '#ec4899';
-    bCtx.lineWidth = 4;
-    bCtx.strokeRect(16, 16, 480, 736);
+      bCtx.strokeStyle = '#ec4899';
+      bCtx.lineWidth = 4;
+      bCtx.strokeRect(16, 16, 480, 736);
 
-    bCtx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-    bCtx.lineWidth = 1;
-    bCtx.strokeRect(24, 24, 464, 720);
+      bCtx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+      bCtx.lineWidth = 1;
+      bCtx.strokeRect(24, 24, 464, 720);
 
-    bCtx.fillStyle = '#ffffff';
-    bCtx.font = 'bold 24px "Space Grotesk", sans-serif';
-    bCtx.textAlign = 'center';
-    bCtx.fillText('ANGEL BARD LAKLO', 256, 100);
+      bCtx.fillStyle = '#ffffff';
+      bCtx.font = 'bold 24px "Space Grotesk", sans-serif';
+      bCtx.textAlign = 'center';
+      bCtx.fillText('ANGEL BARD LAKLO', 256, 100);
 
-    bCtx.fillStyle = '#00f0ff';
-    bCtx.font = '16px "JetBrains Mono", monospace';
-    bCtx.fillText('“Fortis Solus Stabit”', 256, 130);
+      bCtx.fillStyle = '#00f0ff';
+      bCtx.font = '16px "JetBrains Mono", monospace';
+      bCtx.fillText('“Fortis Solus Stabit”', 256, 130);
 
-    bCtx.fillStyle = 'rgba(255, 255, 255, 0.75)';
-    bCtx.font = '14px "Space Grotesk", sans-serif';
-    bCtx.fillText('Vibe Coder • Creative Problem Solver', 256, 165);
+      bCtx.fillStyle = 'rgba(255, 255, 255, 0.75)';
+      bCtx.font = '14px "Space Grotesk", sans-serif';
+      bCtx.fillText('Vibe Coder • Creative Problem Solver', 256, 165);
 
-    // QR code Graphic representation
-    bCtx.fillStyle = '#ffffff';
-    bCtx.fillRect(128, 220, 256, 256);
-    bCtx.fillStyle = '#050713';
-    bCtx.fillRect(140, 232, 232, 232);
+      // QR code Graphic representation
+      bCtx.fillStyle = '#ffffff';
+      bCtx.fillRect(128, 220, 256, 256);
+      bCtx.fillStyle = '#050713';
+      bCtx.fillRect(140, 232, 232, 232);
 
-    bCtx.fillStyle = '#00f0ff';
-    bCtx.fillRect(160, 252, 60, 60);
-    bCtx.fillRect(292, 252, 60, 60);
-    bCtx.fillRect(160, 384, 60, 60);
-    bCtx.fillStyle = '#ffffff';
-    bCtx.fillRect(175, 267, 30, 30);
-    bCtx.fillRect(307, 267, 30, 30);
-    bCtx.fillRect(175, 399, 30, 30);
+      bCtx.fillStyle = '#00f0ff';
+      bCtx.fillRect(160, 252, 60, 60);
+      bCtx.fillRect(292, 252, 60, 60);
+      bCtx.fillRect(160, 384, 60, 60);
+      bCtx.fillStyle = '#ffffff';
+      bCtx.fillRect(175, 267, 30, 30);
+      bCtx.fillRect(307, 267, 30, 30);
+      bCtx.fillRect(175, 399, 30, 30);
 
-    for (let r = 0; r < 8; r++) {
-      for (let c = 0; c < 8; c++) {
-        if ((r + c) % 2 === 0) {
-          bCtx.fillRect(235 + c * 12, 252 + r * 12, 9, 9);
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          if ((r + c) % 2 === 0) {
+            bCtx.fillRect(235 + c * 12, 252 + r * 12, 9, 9);
+          }
         }
       }
+
+      bCtx.fillStyle = '#94a3b8';
+      bCtx.font = '14px "JetBrains Mono", monospace';
+      bCtx.fillText('SCAN TO VISIT LIVE PORTFOLIO', 256, 515);
+
+      bCtx.fillStyle = '#00f0ff';
+      bCtx.font = 'bold 18px "Space Grotesk", sans-serif';
+      bCtx.fillText('https://angelbardlaklo.vercel.app', 256, 555);
+
+      bCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      bCtx.font = '12px "JetBrains Mono", monospace';
+      bCtx.fillText('NTT • INDONESIA // GLOBAL VIBE', 256, 670);
+
+      if (backTexture) backTexture.needsUpdate = true;
     }
-
-    bCtx.fillStyle = '#94a3b8';
-    bCtx.font = '14px "JetBrains Mono", monospace';
-    bCtx.fillText('SCAN TO VISIT LIVE PORTFOLIO', 256, 515);
-
-    bCtx.fillStyle = '#00f0ff';
-    bCtx.font = 'bold 18px "Space Grotesk", sans-serif';
-    bCtx.fillText('https://angelbardlaklo.vercel.app', 256, 555);
-
-    bCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    bCtx.font = '12px "JetBrains Mono", monospace';
-    bCtx.fillText('NTT • INDONESIA // GLOBAL VIBE', 256, 670);
 
     const backTexture = new THREE.CanvasTexture(backCanvas);
     backTexture.anisotropy = 4;
+    drawBackTexture();
 
     // 5. Build 3D Card & Hardware Clip Assembly
     const cardWidth = 1.05;
@@ -380,7 +383,7 @@
     const cardMesh = new THREE.Mesh(cardGeo, materials);
 
     // Card hangs strictly below the top clip:
-    const cardCenterY = -0.08 - cardHeight / 2;
+    const cardCenterY = -0.06 - cardHeight / 2; // -0.835
     cardMesh.position.set(0, cardCenterY, 0);
 
     // Realistic Chrome Metal Hardware:
@@ -396,15 +399,19 @@
 
     const swivelGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.045, 12);
     const swivelMesh = new THREE.Mesh(swivelGeo, metalMat);
-    swivelMesh.position.set(0, -0.035, 0);
+    swivelMesh.position.set(0, -0.03, 0);
 
-    const clipGeo = new THREE.BoxGeometry(0.13, 0.065, 0.046);
+    const clipGeo = new THREE.BoxGeometry(0.13, 0.06, 0.046);
     const clipMesh = new THREE.Mesh(clipGeo, metalMat);
-    clipMesh.position.set(0, -0.075, 0);
+    clipMesh.position.set(0, -0.06, 0);
 
-    // Invisible Hitbox Mesh for mobile touch & mouse interaction
-    const hitboxGeo = new THREE.BoxGeometry(cardWidth + 0.2, cardHeight + 0.25, 0.25);
-    const hitboxMat = new THREE.MeshBasicMaterial({ visible: false });
+    // Reliable Invisible Hitbox Mesh (transparent material so raycaster detects it!)
+    const hitboxGeo = new THREE.BoxGeometry(cardWidth + 0.25, cardHeight + 0.3, 0.3);
+    const hitboxMat = new THREE.MeshBasicMaterial({
+      transparent: true,
+      opacity: 0,
+      depthWrite: false
+    });
     const hitboxMesh = new THREE.Mesh(hitboxGeo, hitboxMat);
     hitboxMesh.position.set(0, cardCenterY, 0);
 
@@ -416,10 +423,10 @@
     cardGroup.add(hitboxMesh);
     scene.add(cardGroup);
 
-    // 6. Lanyard Strap Chain (Optimized 9 Verlet nodes for 60fps smoothness)
+    // 6. Lanyard Strap Chain
     const nodeCount = 9;
-    const anchorY = 1.70;
-    const restLength = 1.0;
+    const anchorY = 1.55;
+    const restLength = 0.85;
     const segmentLength = restLength / (nodeCount - 1);
 
     const nodes = [];
@@ -431,7 +438,7 @@
       prevNodes.push(new THREE.Vector3(0, y, 0));
     }
 
-    // High-tech Woven Lanyard Strap Texture (128 x 256 for optimal memory)
+    // High-tech Woven Lanyard Strap Texture
     const strapCanvas = document.createElement('canvas');
     strapCanvas.width = 128;
     strapCanvas.height = 256;
@@ -443,7 +450,7 @@
     sCtx.fillRect(4, 0, 8, 256);
     sCtx.fillRect(116, 0, 8, 256);
 
-    sCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+    sCtx.fillStyle = 'rgba(255, 255, 255, 0.85)';
     sCtx.font = 'bold 16px "JetBrains Mono", monospace';
     sCtx.textAlign = 'center';
     sCtx.save();
@@ -474,6 +481,9 @@
     const hookMesh = new THREE.Mesh(hookGeo, metalMat);
     hookMesh.position.set(0, anchorY + 0.02, 0);
     scene.add(hookMesh);
+
+    // Initial positioning of card
+    cardGroup.position.copy(nodes[nodeCount - 1]);
 
     // 7. Interactive Draggable Physics
     let isDragging = false;
@@ -517,7 +527,7 @@
         prevMousePos.copy(planeIntersect);
         dragVelocity.set(0, 0, 0);
 
-        if (canvas.setPointerCapture) {
+        if (canvas.setPointerCapture && e.pointerId !== undefined) {
           try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
         }
       }
@@ -525,7 +535,10 @@
 
     function onPointerMove(e) {
       if (!isDragging) {
-        // Throttled hover check
+        updateMouseCoords(e.clientX, e.clientY);
+        raycaster.setFromCamera(mouse, camera);
+        const hits = raycaster.intersectObjects([hitboxMesh, cardMesh], true);
+        canvas.style.cursor = hits.length > 0 ? 'grab' : 'default';
         return;
       }
 
@@ -551,10 +564,10 @@
         canvas.style.cursor = 'grab';
 
         const endNode = nodes[nodeCount - 1];
-        const velImpulse = dragVelocity.clone().clampLength(0, 3.5).multiplyScalar(0.016);
+        const velImpulse = dragVelocity.clone().clampLength(0, 2.5).multiplyScalar(0.016);
         endNode.add(velImpulse);
 
-        if (canvas.releasePointerCapture) {
+        if (canvas.releasePointerCapture && e.pointerId !== undefined) {
           try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
         }
       }
@@ -564,28 +577,20 @@
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     window.addEventListener('pointerup', onPointerUp);
     window.addEventListener('pointercancel', onPointerUp);
+    window.addEventListener('blur', () => { isDragging = false; });
 
     // Double-click to flip card
     canvas.addEventListener('dblclick', () => {
       rotVelY += Math.PI * 4;
     });
 
-    // Mobile touch
-    canvas.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) onPointerDown(e.touches[0]);
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (isDragging && e.touches.length === 1) onPointerMove(e.touches[0]);
-    }, { passive: true });
-
-    window.addEventListener('touchend', (e) => {
+    // Tap detection for double-tap flip
+    canvas.addEventListener('pointerup', () => {
       const now = performance.now();
       if (now - lastTap < 350 && now - lastTap > 0) {
         rotVelY += Math.PI * 4;
       }
       lastTap = now;
-      onPointerUp(e);
     });
 
     // 8. HIGH-PERFORMANCE PHYSICS & RENDER LOOP
@@ -598,7 +603,7 @@
     let isSectionVisible = true;
     let isLoopRunning = false;
 
-    // INTERSECTION OBSERVER: Pause 3D engine completely when scrolled away!
+    // IntersectionObserver: Pause 3D engine completely when scrolled away!
     if ('IntersectionObserver' in window) {
       const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -616,19 +621,19 @@
     function stepPhysics() {
       if (!isSectionVisible) {
         isLoopRunning = false;
-        return; // HALT RENDERING when not in view! Saves 100% GPU!
+        return; // HALT RENDERING when not in view
       }
 
       isLoopRunning = true;
       const dt = Math.min(clock.getDelta(), 0.033);
       breezeTime += dt;
 
-      const breezeX = Math.sin(breezeTime * 1.1) * 0.035 + Math.sin(breezeTime * 2.3) * 0.015;
-      const breezeZ = Math.cos(breezeTime * 0.8) * 0.025;
+      const breezeX = Math.sin(breezeTime * 1.1) * 0.03 + Math.sin(breezeTime * 2.3) * 0.015;
+      const breezeZ = Math.cos(breezeTime * 0.8) * 0.02;
 
       nodes[0].set(0, anchorY, 0);
 
-      // Verlet update
+      // Verlet integration
       for (let i = 1; i < nodeCount; i++) {
         const vel = nodes[i].clone().sub(prevNodes[i]).multiplyScalar(0.975);
         prevNodes[i].copy(nodes[i]);
@@ -640,18 +645,23 @@
         nodes[i].add(vel);
       }
 
-      // Dragging target
+      // CRITICAL CLAMP: Rope can NEVER stretch further than its physical reach!
+      // This guarantees the card CAN NEVER fall off the screen!
       if (isDragging) {
         const targetEnd = planeIntersect.clone().add(grabOffset);
-        targetEnd.x = THREE.MathUtils.clamp(targetEnd.x, -1.7, 1.7);
-        targetEnd.y = THREE.MathUtils.clamp(targetEnd.y, -1.3, 1.1);
-        targetEnd.z = THREE.MathUtils.clamp(targetEnd.z, -0.6, 0.8);
+
+        const fromAnchor = targetEnd.clone().sub(nodes[0]);
+        const maxReach = restLength * 1.08;
+        if (fromAnchor.length() > maxReach) {
+          fromAnchor.setLength(maxReach);
+          targetEnd.copy(nodes[0]).add(fromAnchor);
+        }
 
         nodes[nodeCount - 1].lerp(targetEnd, 0.55);
       }
 
-      // Relax constraints (5 iterations is plenty and 2x faster than 10)
-      for (let iter = 0; iter < 5; iter++) {
+      // Relax constraints (7 iterations for stable rigid rope)
+      for (let iter = 0; iter < 7; iter++) {
         nodes[0].set(0, anchorY, 0);
 
         for (let i = 0; i < nodeCount - 1; i++) {
@@ -664,7 +674,7 @@
             if (i === 0) {
               p2.sub(delta.multiplyScalar(diff));
             } else {
-              p1.add(delta.multiplyScalar(diff * 0.5));
+              p1.add(delta.clone().multiplyScalar(diff * 0.5));
               p2.sub(delta.multiplyScalar(diff * 0.5));
             }
           }
@@ -674,6 +684,11 @@
       // Sync Card position
       const endNode = nodes[nodeCount - 1];
       const prevNode = nodes[nodeCount - 2];
+
+      // Zero-NaN Safety guard
+      if (isNaN(endNode.x) || isNaN(endNode.y) || isNaN(endNode.z)) {
+        endNode.set(0, anchorY - restLength, 0);
+      }
 
       cardGroup.position.copy(endNode);
 
@@ -691,11 +706,14 @@
       rotVelY *= 0.94;
       rotVelY += (0 - rotY) * 5.5 * dt;
 
+      if (isNaN(rotY)) rotY = 0;
+      if (isNaN(rotVelY)) rotVelY = 0;
+
       targetEuler.set(dynPitch, rotY, dynRoll, 'YXZ');
       targetQuat.setFromEuler(targetEuler);
       cardGroup.quaternion.slerp(targetQuat, 0.22);
 
-      // Recreate tube geometry (lightweight 18 segments)
+      // Update tube geometry
       curve.points = nodes;
       strapMesh.geometry.dispose();
       strapMesh.geometry = new THREE.TubeGeometry(curve, 18, 0.02, 6, false);
