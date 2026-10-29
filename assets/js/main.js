@@ -1,7 +1,7 @@
 /* ===================================================================
-   ANGEL BARD LAKLO, S.Kom - EXECUTIVE PORTFOLIO (ALFARI INITIATIVE)
+   ANGEL BARD LAKLO, S.Kom - EXECUTIVE PORTFOLIO
    Ultra-Modern Cosmic Space, 3D Lanyard, Glassmorphism & Cyberpunk
-   Inspired by alfari.my.id • Tailored for Vibe Coder & Healthcare IT
+   Tailored for Vibe Coder & Healthcare IT Specialist
    =================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -246,7 +246,7 @@ function initLanyard3D() {
 }
 
 /* -------------------------------------------------------------------
-   6. DYNAMIC MOUSE BORDER GLOW (alfari.my.id bento cards)
+   6. DYNAMIC MOUSE BORDER GLOW (bento cards)
    ------------------------------------------------------------------- */
 function initBorderGlow() {
   const cards = document.querySelectorAll('.border-glow-card');

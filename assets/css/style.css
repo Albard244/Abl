@@ -1,7 +1,7 @@
 /* ===================================================================
-   ANGEL BARD LAKLO, S.Kom - EXECUTIVE PORTFOLIO (ALFARI INITIATIVE)
+   ANGEL BARD LAKLO, S.Kom - EXECUTIVE PORTFOLIO
    Ultra-Modern Cosmic Space, 3D Lanyard, Glassmorphism & Cyberpunk
-   Inspired by alfari.my.id • Tailored for Vibe Coder & Healthcare IT
+   Tailored for Vibe Coder & Healthcare IT Specialist
    =================================================================== */
 
 /* -------------------------------------------------------------------
@@ -13,7 +13,7 @@
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Cosmic Space Color Palette (alfari.my.id inspiration) */
+  /* Cosmic Space Color Palette */
   --col-bg: #050510;
   --col-bg2: #07071a;
   --col-bg3: #0c0f24;
@@ -161,7 +161,7 @@ img {
 }
 
 /* -------------------------------------------------------------------
-   3. WELCOME SCREEN PRELOADER (alfari.my.id inspiration)
+   3. WELCOME SCREEN PRELOADER
    ------------------------------------------------------------------- */
 .welcome-screen-root {
   position: fixed;
@@ -374,7 +374,7 @@ img {
 }
 
 /* -------------------------------------------------------------------
-   5. FLOATING GLASS PILL NAVBAR (alfari.my.id inspiration)
+   5. FLOATING GLASS PILL NAVBAR
    ------------------------------------------------------------------- */
 .navbar-root {
   position: fixed;
@@ -770,7 +770,7 @@ img {
 }
 
 /* -------------------------------------------------------------------
-   7. 3D INTERACTIVE LANYARD ID BADGE (alfari.my.id marquee feature)
+   7. 3D INTERACTIVE LANYARD ID BADGE
    ------------------------------------------------------------------- */
 .lanyard-card-container {
   display: flex;
@@ -1209,7 +1209,7 @@ img {
 }
 
 /* -------------------------------------------------------------------
-   9. BENTO GRID & DYNAMIC MOUSE BORDER GLOW (alfari.my.id)
+   9. BENTO GRID & DYNAMIC MOUSE BORDER GLOW
    ------------------------------------------------------------------- */
 .about-root-section {
   padding: 80px 0;
@@ -1373,7 +1373,7 @@ img {
 }
 
 /* -------------------------------------------------------------------
-   10. SPOTIFY / CODING VIBES SECTION (alfari.my.id marquee section)
+   10. SPOTIFY / CODING VIBES SECTION
    ------------------------------------------------------------------- */
 .spotify-section {
   padding: 80px 0;
@@ -1936,7 +1936,7 @@ img {
 .mini-eq-bar:nth-child(3) { animation-delay: 0.4s; height: 90%; }
 
 /* -------------------------------------------------------------------
-   11. TABBED PORTFOLIO HUB (alfari.my.id marquee feature)
+   11. TABBED PORTFOLIO HUB
    ------------------------------------------------------------------- */
 .portfolio-root-section {
   padding: 80px 0;
